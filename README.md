@@ -1,0 +1,2 @@
+# .vim-magic
+Vim setup
