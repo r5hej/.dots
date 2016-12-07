@@ -1,2 +1,2 @@
 # .vim-magic
-Config files vim
+Repository for vim setup
