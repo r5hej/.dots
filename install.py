@@ -1,4 +1,4 @@
-n!/usr/bin/env python3
+#!/usr/bin/env python3
 import os
 import paths
 import shutil
@@ -24,7 +24,7 @@ subprocess.call(["git", "pull"])
 os.chdir(home_path)
 for path in paths.vim_dirs:
     if (not os.path.exists(path)):
-▸·······os.mkdir(path) #exist_ok=True)
+        os.mkdir(path)# exist_ok=True)
 
 os.chdir(git_path)
 for path in paths.vim_files:
