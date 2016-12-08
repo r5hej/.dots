@@ -3,7 +3,6 @@ import os
 import paths
 import shutil
 import subprocess
-import sys
 
 
 def install_vim(home_path, git_path):
@@ -44,17 +43,16 @@ def install_vim(home_path, git_path):
 
 
 def main():
-    #if not sys.argv[1]:
-    #    sys.exit(-1)
 
     home = os.path.expanduser("~")
-    git_dir = home + "/.vim-magic"
+    git_dir = home + "/.dotfiles"
     os.chdir(git_dir)
     subprocess.call(["git", "pull"])
 
 #    if sys.argv[1] == "vim":
 #        install_vim(home, git_dir)
     install_vim(home, git_dir)
+
 
 if __name__ == "__main__":
     main()

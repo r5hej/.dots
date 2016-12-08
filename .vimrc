@@ -14,7 +14,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scooloose/syntastic'
-"Plugin 'edkolev/tmuxline.vim'
+Plugin 'edkolev/tmuxline.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -28,10 +28,11 @@ filetype plugin on
 
 " ==========================  Settings ========================== "
 
+
 syntax on
 
 set list
-"set number
+set number
 set wildmenu
 set hlsearch
 set nobackup
@@ -53,6 +54,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 let g:airline_detect_spell = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tmuxline#enabled = 0
 
 " ===== colors ===== "
 let g:airline_theme ='simple'
@@ -62,30 +64,39 @@ colorscheme monokai
 let g:syntastic_check_on_wq = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_loc_list_height=5
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_mode_map = { "passive_filetypes": ["tex"] }
-
-
-" ===== flake8 ===== "
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_python_exec = '/usr/bin/python3'
 
+" ===== YouCompleteMe ===== "
+let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_autoclose_preview_window_after_completion=1
 
 
 
 
-"let python_highlight_all=1
+let mapleader = ','
+
 
 " ==========================  Settings ========================== "
 
+" ======================== File specific ======================== "
+
+au FileType tex set spell spelllang=en_us
+
+" ======================== File specific ======================== "
+
 " ==========================  Keybinds ========================== "
 
-nmap	<TAB>	    :w<ENTER>:bnext<ENTER>
-map	<C-n>	    :NERDTreeToggle<CR>
+nmap	<TAB>	    :w<cr>:bnext<cr>
+nmap	<Leader>bd  <cr>:bd<cr>
+nmap	<Leader>ev  :tabedit ~/.vimrc<cr>
+map	<C-n>	    :NERDTreeToggle<cr>
 map	<C-j>	    <C-w>j
-map	<c-k>	    <C-w>k
-map	<c-l>	    <C-w>l
-map	<c-h>	    <C-w>h
+map	<C-k>	    <C-w>k
+map	<C-l>	    <C-w>l
+map	<C-h>	    <C-w>h
 
 " ==========================  Keybinds ========================== "
