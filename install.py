@@ -1,58 +1,47 @@
-#!/usr/bin/env python3
+n!/usr/bin/env python3
 import os
 import paths
 import shutil
 import subprocess
 
+"""
+Install vim with plugins
 
-def install_vim(home_path, git_path):
-    """
-    Install vim with plugins
+For ubuntu, the following packages are needed:
+    exuberant-ctags
+    build-essentials
+    python-dev
+    python3-dev
+    cmake
+"""
 
-    For ubuntu, the following packages are needed:
-        exuberant-ctags
-        build-essentials
-        python-dev
-        python3-dev
-        cmake
-    """
-
-    os.chdir(home_path)
-    for path in paths.vim_dirs:
-        os.makedirs(path, exist_ok=True)
-
-    os.chdir(git_path)
-    for path in paths.vim_files:
-        shutil.copyfile(path, home_path + "/" + path)
-
-    for tree in paths.vim_trees:
-        if os.path.exists(home_path + "/" + tree):
-            shutil.rmtree(home_path + "/" + tree)
-
-        print(os.getcwd())
-        shutil.copytree(tree, home_path + "/" + tree)
-
-    os.chdir(home_path)
-    subprocess.call(["vim", "+PluginInstall", "+qall"])
-    os.chdir(home_path + "/.vim/bundle/YouCompleteMe")
-    subprocess.call(["./install.py"])
-
-    print("############################")
-    print("#  vim has been installed  #")
-    print("############################")
+home_path = os.path.expanduser("~")
+git_path = home_path + "/.dotfiles"
+os.chdir(git_path)
+subprocess.call(["git", "pull"])
 
 
-def main():
+os.chdir(home_path)
+for path in paths.vim_dirs:
+    if (not os.path.exists(path)):
+▸·······os.mkdir(path) #exist_ok=True)
 
-    home = os.path.expanduser("~")
-    git_dir = home + "/.dotfiles"
-    os.chdir(git_dir)
-    subprocess.call(["git", "pull"])
+os.chdir(git_path)
+for path in paths.vim_files:
+    shutil.copyfile(path, home_path + "/" + path)
 
-#    if sys.argv[1] == "vim":
-#        install_vim(home, git_dir)
-    install_vim(home, git_dir)
+for tree in paths.vim_trees:
+    if os.path.exists(home_path + "/" + tree):
+        shutil.rmtree(home_path + "/" + tree)
 
+    print(os.getcwd())
+    shutil.copytree(tree, home_path + "/" + tree)
 
-if __name__ == "__main__":
-    main()
+os.chdir(home_path)
+subprocess.call(["vim", "+PluginInstall", "+qall"])
+os.chdir(home_path + "/.vim/bundle/YouCompleteMe")
+subprocess.call(["./install.py"])
+
+print("############################")
+print("#  vim has been installed  #")
+print("############################")
