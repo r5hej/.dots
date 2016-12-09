@@ -24,18 +24,13 @@ subprocess.call(["git", "pull"])
 os.chdir(home_path)
 for path in paths.vim_dirs:
     if (not os.path.exists(path)):
-        os.mkdir(path)# exist_ok=True)
+        os.mkdir(path)
 
 os.chdir(git_path)
 for path in paths.vim_files:
     shutil.copyfile(path, home_path + "/" + path)
 
-for tree in paths.vim_trees:
-    if os.path.exists(home_path + "/" + tree):
-        shutil.rmtree(home_path + "/" + tree)
-
-    print(os.getcwd())
-    shutil.copytree(tree, home_path + "/" + tree)
+subprocess.call(["git", "clone", "https://github.com/VundleVim/Vundle.vim.git", "~/.vim/bundle/Vundle.vim"])
 
 os.chdir(home_path)
 subprocess.call(["vim", "+PluginInstall", "+qall"])

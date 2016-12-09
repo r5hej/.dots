@@ -33,7 +33,9 @@ syntax on
 
 set list
 set number
+set hidden
 set wildmenu
+set autoread
 set hlsearch
 set nobackup
 set t_Co=256

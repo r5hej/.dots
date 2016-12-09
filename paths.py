@@ -11,7 +11,3 @@ vim_dirs = [
     ".vim/colors",
     ".config"
 ]
-
-vim_trees = [
-    ".vim/bundle/Vundle.vim"
-]
