@@ -4,8 +4,7 @@ import shutil
 
 os.chdir("~")
 os.remove(".vimrc")
-shutil.rmtree(".vim/bundle/")
-shutil.rmtree(".vim/colors/")
+shutil.rmtree(".vim/")
 
 print("############################")
 print("#   vim has been removed   #")

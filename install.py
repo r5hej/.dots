@@ -30,7 +30,8 @@ os.chdir(git_path)
 for path in paths.vim_files:
     shutil.copyfile(path, home_path + "/" + path)
 
-subprocess.call(["git", "clone", "https://github.com/VundleVim/Vundle.vim.git", "~/.vim/bundle/Vundle.vim"])
+os.chdir(home_path + "/.vim/bundle/")
+subprocess.call(["git", "clone", "https://github.com/VundleVim/Vundle.vim.git"])
 
 os.chdir(home_path)
 subprocess.call(["vim", "+PluginInstall", "+qall"])

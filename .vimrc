@@ -8,12 +8,12 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 
-Plugin 'Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 "Plugin 'auto-pairs'
 Plugin 'nvie/vim-flake8'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-airline/vim-airline'
