@@ -20,7 +20,7 @@ def dependicies():
     subprocess.call(["sudo", "pip3", "install", "neovim", "flake8"])
 
 
-args = parser.parse_args()
+args = parser()
 
 if (args.dependicies is True):
     dependicies()
