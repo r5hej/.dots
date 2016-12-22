@@ -1,4 +1,3 @@
-
 vim_files = [
     ".vimrc",
     ".vim/colors/monokai.vim",

@@ -16,7 +16,7 @@ For ubuntu, the following packages are needed:
 """
 
 home_path = os.path.expanduser("~")
-git_path = home_path + "/.dotfiles"
+git_path = home_path + "/.dotfiles/vim"
 os.chdir(git_path)
 subprocess.call(["git", "pull"])
 
