@@ -44,8 +44,11 @@ for path in paths.neovim_files:
     shutil.copyfile(path, neovim_path + "/" + path)
 
 os.chdir(neovim_path)
-subprocess.call(["curl", "https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh", ">", "installer.sh"])
-subprocess.call(["sh", "./installer.sh", "."])
+#  subprocess.call(["curl", "https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh", ">", "installer.sh"])
+#  subprocess.call(["sh", "./installer.sh", "."])
+
+os.system("curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh")
+os.system("sh ./installer.sh .")
 
 if (os.path.exists("installer.sh")):
     os.remove("installer.sh")
