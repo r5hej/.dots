@@ -9,14 +9,13 @@ import argparse
 def parser():
     parser = argparse.ArgumentParser(description="Update neovim configs")
     parser.add_argument("-c", "--commit", dest="commit", action="store_true", default="False", help="Whether to commit new changes")
-    parser.add_argument("-m", "--message", dest="message", action="store", default="Automatic git push", help="The message to be commited")
+    parser.add_argument("-m", "--message", dest="message", action="store", help="The message to be commited")
     return parser.parse_args()
 
 
 home_path = os.path.expanduser("~")
 git_path = home_path + "/.dotfiles/neovim"
 neovim_path = home_path + "/.config/nvim"
-
 args = parser()
 
 os.chdir(git_path)
