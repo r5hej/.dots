@@ -37,7 +37,7 @@ for path in paths.neovim_dirs:
         os.mkdir(path)
 
 for path in paths.configs:
-    shutil.copy(git_path + ".config/flake8", path)
+    shutil.copy(git_path + "/" + ".config/flake8", path)
 
 os.chdir(git_path)
 for path in paths.neovim_files:
@@ -46,7 +46,9 @@ for path in paths.neovim_files:
 os.chdir(neovim_path)
 subprocess.call(["curl", "https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh", ">", "installer.sh"])
 subprocess.call(["sh", "./installer.sh", "."])
-shutil.remove("installer.sh")
+
+if (os.path.exists("installer.sh")):
+    os.remove("installer.sh")
 
 print("###############################")
 print("#  neovim has been installed  #")
