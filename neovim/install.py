@@ -44,9 +44,6 @@ for path in paths.neovim_files:
     shutil.copyfile(path, neovim_path + "/" + path)
 
 os.chdir(neovim_path)
-#  subprocess.call(["curl", "https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh", ">", "installer.sh"])
-#  subprocess.call(["sh", "./installer.sh", "."])
-
 os.system("curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh")
 os.system("sh ./installer.sh .")
 
@@ -56,4 +53,4 @@ if (os.path.exists("installer.sh")):
 print("###############################")
 print("#  neovim has been installed  #")
 print("###############################")
-print("\nPlease open init.vim in neovim and run dein#install() and :UpdateRemotePlugin")
+print("\nPlease open init.vim in neovim and run :call dein#install() and :UpdateRemotePlugin")
