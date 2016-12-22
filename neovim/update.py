@@ -32,6 +32,7 @@ for path in paths.configs:
 
 if (args.commit is True):
     os.chdir(git_path)
+    subprocess.call(["git", "add", "--all"])
     subprocess.call(["git", "commit", "-am", "\"" + args.message + "\""])
     subprocess.call(["git", "push"])
     print("commiting")

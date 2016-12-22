@@ -24,7 +24,6 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('vim-airline/vim-airline')
 call dein#add('scrooloose/nerdcommenter')
 call dein#add('easymotion/vim-easymotion')
-" call dein#add('dojoteef/neomake-autolint')
 call dein#add('vim-airline/vim-airline-themes')
 
 call dein#end()
