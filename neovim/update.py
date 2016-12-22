@@ -9,7 +9,7 @@ import argparse
 def parser():
     parser = argparse.ArgumentParser(description="Update neovim configs")
     parser.add_argument("-c", "--commit", dest="commit", action="store_true", default="False", help="Whether to commit new changes")
-    parser.add_argument("-m", "--message", dest="message", action="store", help="The message to be commited")
+    parser.add_argument("-m", "--message", dest="message", action="store", help="The commit message")
     return parser.parse_args()
 
 
@@ -34,7 +34,6 @@ if (args.commit is True):
     subprocess.call(["git", "add", "--all"])
     subprocess.call(["git", "commit", "-am", "\"" + args.message + "\""])
     subprocess.call(["git", "push"])
-    print("commiting")
 
 print("######################################")
 print("# neovim repository has been updated #")

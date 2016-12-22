@@ -8,7 +8,7 @@ import argparse
 
 def parser():
     parser = argparse.ArgumentParser(description="install neovim + plugins")
-    parser.add_argument("-d", "--dependicies", dest="dependicies", action="store_true", default="False", help="whetever to install ubuntu dependicies for neovin")
+    parser.add_argument("-d", "--dependicies", dest="dependicies", action="store_true", default="False", help="To install dependicies including neovim itself")
     return parser.parse_args()
 
 
@@ -20,13 +20,10 @@ def dependicies():
     subprocess.call(["sudo", "pip3", "install", "neovim", "flake8"])
 
 
-#  parser = argparse.ArgumentParser(description="install neovim + plugins")
-#  parser.add_argument("-d", "--dependicies", dest="dependicies", action="store_true", default="False", help="whetever to install ubuntu dependicies for neovin")
-#  args = parser.parse_args()
 args = parser.parse_args()
 
 if (args.dependicies is True):
-    print("install dependicies")
+    dependicies()
 
 home_path = os.path.expanduser("~")
 git_path = home_path + "/.dotfiles/neovim"
@@ -49,15 +46,7 @@ for path in paths.neovim_files:
 os.chdir(neovim_path)
 subprocess.call(["curl", "https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh", ">", "installer.sh"])
 subprocess.call(["sh", "./installer.sh", "."])
-
-
-#  os.chdir(home_path + "/.vim/bundle/")
-#  subprocess.call(["git", "clone", "https://github.com/VundleVim/Vundle.vim.git"])
-
-#  os.chdir(home_path)
-#  subprocess.call(["vim", "+PluginInstall", "+qall"])
-#  os.chdir(home_path + "/.vim/bundle/YouCompleteMe")
-#  subprocess.call(["./install.py"])
+shutil.remove("installer.sh")
 
 print("###############################")
 print("#  neovim has been installed  #")
