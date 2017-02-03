@@ -4,7 +4,6 @@ endif
 
 " ======================================== Plugins ======================================== "
 
-
 set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim/
 
 call dein#begin(expand('~/.config/nvim'))
@@ -31,7 +30,7 @@ call dein#end()
 filetype plugin indent on
 syntax enable
 
-" denne test virker hvis du kan se den her linje, for du er jo mega pro
+
 " ======================================== Plugins ======================================== "
 
 " ======================================== Setting ======================================== "
@@ -145,6 +144,7 @@ nmap <leader>lc                     :lclose<cr>
 nmap <leader><space>                :noh<cr>
 nmap <leader>ev                     :e ~/.config/nvim/init.vim<cr>
 nmap <leader>pi                     :call dein#install()<cr>
+nmap <leader>dd                     :bd<cr>
 
 " ============== Shortcuts ============== "
 " ============= Navigation ============== "

@@ -8,11 +8,12 @@ import argparse
 
 def parser():
     parser = argparse.ArgumentParser(description="install neovim + plugins")
-    parser.add_argument("-d", "--dependicies", dest="dependicies", action="store_true", default="False", help="To install dependicies including neovim itself")
+    parser.add_argument("-u", "--ubuntu", dest="ubuntu", action="store_true", default="False", help="Install dependencies for ubuntu linux")
+    parser.add_argument("-a", "--arch", dest="arch", action="store_true", default="False", help="Install dependencies for arch linux")
     return parser.parse_args()
 
 
-def dependicies():
+def ubuntu_dependencies():
     subprocess.call(["sudo", "add-apt-repository", "ppa:neovim-ppa/unstable"])
     subprocess.call(["sudo", "apt", "update"])
     subprocess.call(["sudo", "apt", "install", "neovim", "python-dev", "python-pip", "python3-dev", "python3-pip"])
@@ -20,37 +21,52 @@ def dependicies():
     subprocess.call(["sudo", "pip3", "install", "neovim", "flake8"])
 
 
-args = parser()
+def arch_dependencies():
+    subprocess.call(["sudo", "pacman -S", "neovim"])
 
-if (args.dependicies is True):
-    dependicies()
 
-home_path = os.path.expanduser("~")
-git_path = home_path + "/.dotfiles/neovim"
-neovim_path = home_path + "/.config/nvim"
-os.chdir(git_path)
-subprocess.call(["git", "pull"])
+def main():
+    args = parser()
 
-os.chdir(home_path)
-for path in paths.neovim_dirs:
-    if (not os.path.exists(path)):
-        os.mkdir(path)
+    if (args.ubuntu is True):
+        ubuntu_dependencies()
 
-for path in paths.configs:
-    shutil.copy(git_path + "/" + ".config/flake8", path)
+    elif (args.arch is True):
+        arch_dependencies()
 
-os.chdir(git_path)
-for path in paths.neovim_files:
-    shutil.copyfile(path, neovim_path + "/" + path)
+    home_path = os.path.expanduser("~")
+    git_path = home_path + "/.dotfiles/neovim"
+    neovim_path = home_path + "/.config/nvim"
+    os.chdir(git_path)
+    subprocess.call(["git", "pull"])
 
-os.chdir(neovim_path)
-os.system("curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh")
-os.system("sh ./installer.sh .")
+    os.chdir(home_path)
+    for path in paths.neovim_dirs:
+        if (not os.path.exists(path)):
+            os.mkdir(path)
 
-if (os.path.exists("installer.sh")):
-    os.remove("installer.sh")
+    for path in paths.configs:
+        shutil.copy(git_path + "/" + ".config/flake8", path)
 
-print("###############################")
-print("#  neovim has been installed  #")
-print("###############################")
-print("\nPlease open init.vim in neovim and run :call dein#install() and :UpdateRemotePlugin")
+    os.chdir(git_path)
+    for path in paths.neovim_files:
+        shutil.copyfile(path, neovim_path + "/" + path)
+
+    os.chdir(neovim_path)
+    os.system("curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh")
+    os.system("sh ./installer.sh .")
+
+    if (os.path.exists("installer.sh")):
+        os.remove("installer.sh")
+
+    if args.ubuntu:
+        os.system("echo let NVIM_TUI_ENABLE_CURSOR_SHAPE = 0 >> ~/.config/neovim/init.vim")
+
+    print("###############################")
+    print("#  neovim has been installed  #")
+    print("###############################")
+    print("\nPlease open init.vim in neovim and run :call dein#install() and :UpdateRemotePlugin")
+
+
+if __name__ == "__main__":
+    main()
