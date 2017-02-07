@@ -22,7 +22,7 @@ def ubuntu_dependencies():
 
 
 def arch_dependencies():
-    subprocess.call(["sudo", "pacman -S", "neovim"])
+    subprocess.call(["sudo", "pacman -S", "neovim", "python-pip"])
 
 
 def main():

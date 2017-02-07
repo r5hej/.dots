@@ -32,7 +32,7 @@ def main():
     if (args.message):
         os.chdir(git_path)
         subprocess.call(["git", "add", "--all"])
-        subprocess.call(["git", "commit", "-am", "\"" + args.message + "\""])
+        subprocess.call(["git", "commit", "-am", args.message])
         subprocess.call(["git", "push"])
 
     print("######################################")
