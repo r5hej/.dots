@@ -35,22 +35,29 @@ def main():
         arch_dependencies()
 
     home_path = os.path.expanduser("~")
-    git_path = home_path + "/.dotfiles/neovim"
-    neovim_path = home_path + "/.config/nvim"
+    git_path = home_path + "/.dotfiles/neovim/"
+    git_nvim = git_path + "nvim/"
+    neovim_path = home_path + "/.config/nvim/"
+
     os.chdir(git_path)
     subprocess.call(["git", "pull"])
 
+
     os.chdir(home_path)
+    for path in paths.configs:
+        shutil.copy("{}{}".format(git_path, path), path)
+
+
+    os.chdir(home_path + "/.config")
     for path in paths.neovim_dirs:
         if (not os.path.exists(path)):
-            os.mkdir(path)
+            os.mkdirs(path)
 
-    for path in paths.configs:
-        shutil.copy(git_path + "/" + ".config/flake8", path)
 
-    os.chdir(git_path)
+    os.chdir(git_nvim)
     for path in paths.neovim_files:
-        shutil.copyfile(path, neovim_path + "/" + path)
+        shutil.copy(path, "{}{}".format(neovim_path, path))
+
 
     os.chdir(neovim_path)
     os.system("curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh")

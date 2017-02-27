@@ -1,0 +1,14 @@
+\documentclass[a4paer]{article}
+
+\usepackage[english]{babel}
+
+\title{}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+
+\end{document}

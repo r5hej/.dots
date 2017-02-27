@@ -14,20 +14,27 @@ def parser():
 
 def main():
     home_path = os.path.expanduser("~")
-    git_path = home_path + "/.dotfiles/neovim"
-    neovim_path = home_path + "/.config/nvim"
+    git_path = home_path + "/.dotfiles/neovim/"
+    git_nvim = git_path + "nvim/"
+    neovim_path = home_path + "/.config/nvim/"
     args = parser()
 
     os.chdir(git_path)
     subprocess.call(["git", "pull"])
 
-    os.chdir(neovim_path)
-    for path in paths.neovim_files:
-        shutil.copy(path, git_path + "/" + path)
+    for path in paths.neovim_dirs:
+        if not os.path.exists(path):
+            os.makedirs(path)
+
 
     os.chdir(home_path)
     for path in paths.configs:
-        shutil.copy(path, git_path + "/" + path)
+        shutil.copy(path, "{}{}".format(git_path, path))
+
+
+    os.chdir(neovim_path)
+    for path in paths.neovim_files:
+        shutil.copy(path, "{}{}".format(git_nvim, path))
 
     if (args.message):
         os.chdir(git_path)
@@ -35,9 +42,14 @@ def main():
         subprocess.call(["git", "commit", "-am", args.message])
         subprocess.call(["git", "push"])
 
-    print("######################################")
-    print("# neovim repository has been updated #")
-    print("######################################")
+        print("#############################################")
+        print("# neovim repository changes has been pushed #")
+        print("#############################################")
+
+    else:
+        print("##############################################")
+        print("# neovim repository has been locally updated #")
+        print("##############################################")
 
 
 if __name__ == "__main__":

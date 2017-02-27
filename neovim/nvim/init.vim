@@ -17,7 +17,7 @@ call dein#add('Shougo/context_filetype.vim')
 " call dein#add('Shougo/deol.nvim')
 
 call dein#add('mileszs/ack.vim')
-call dein#add('neomake/neomake')
+" call dein#add('neomake/neomake')
 call dein#add('tpope/vim-fugitive')
 call dein#add('scrooloose/nerdtree')
 call dein#add('vim-airline/vim-airline')
@@ -80,7 +80,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " =============== Airline =============== "
 " ============ NERDCommenter ============ "
 
-let g:NERDSpaceDelims = 1
+" let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
 let g:NERDTrimTrailingWhitespace = 1
 
@@ -96,7 +96,7 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " =============== Deoplete ============== "
 " =============== Neomake =============== "
 
-autocmd! BufWritePost,BufEnter * Neomake
+" autocmd! bufwritepost,bufenter *.py neomake
 let g:neomake_autoline_sign_column_always = 1
 
 " =============== Neomake =============== "
@@ -105,8 +105,8 @@ let g:neomake_autoline_sign_column_always = 1
 " ===================================== File specific ===================================== "
 " ================ Latex ================ "
 
-au FileType tex setlocal spell
-" au FileType tex setlocal spell spelllang=en_us
+au FileType tex setlocal spell spelllang=en_us
+" autocmd FileType tex nnoremap <leader>temp :-1read ~/.config/nvim/templates/latex<cr>
 
 " ================ Latex ================ "
 " ===================================== File specific ===================================== "

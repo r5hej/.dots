@@ -1,2 +1,1 @@
-# .vim-magic
-Repository for vim setup
+Repository for my personal desktop configuration files
