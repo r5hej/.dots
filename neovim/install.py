@@ -66,6 +66,7 @@ def main():
     if (os.path.exists("installer.sh")):
         os.remove("installer.sh")
 
+    # platform.linux_distribution()
     if args.ubuntu:
         os.system("echo let NVIM_TUI_ENABLE_CURSOR_SHAPE = 0 >> ~/.config/neovim/init.vim")
 
