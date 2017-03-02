@@ -2,8 +2,9 @@
 import os
 import paths
 import shutil
-import subprocess
 import argparse
+import subprocess
+import distutils.core
 
 
 def parser():
@@ -22,8 +23,9 @@ def ubuntu_dependencies():
 
 
 def arch_dependencies():
-    subprocess.call(["sudo", "pacman -S", "neovim", "python-pip"])
-
+    os.system("sudo pacman -S neovim python-pip")
+    subprocess.call(["sudo", "pip", "install", "neovim", "flake8"])
+    subprocess.call(["sudo", "pip3", "install", "neovim", "flake8"])
 
 def main():
     args = parser()
@@ -35,29 +37,17 @@ def main():
         arch_dependencies()
 
     home_path = os.path.expanduser("~")
-    git_path = home_path + "/.dotfiles/neovim/"
-    git_nvim = git_path + "nvim/"
+    git_path = home_path + "/.dotfiles/"
+    git_nvim_path = git_path + ".config/nvim/"
     neovim_path = home_path + "/.config/nvim/"
 
     os.chdir(git_path)
     subprocess.call(["git", "pull"])
 
-
     os.chdir(home_path)
-    for path in paths.configs:
-        shutil.copy("{}{}".format(git_path, path), path)
-
-
-    os.chdir(home_path + "/.config")
-    for path in paths.neovim_dirs:
-        if (not os.path.exists(path)):
-            os.mkdirs(path)
-
-
-    os.chdir(git_nvim)
-    for path in paths.neovim_files:
-        shutil.copy(path, "{}{}".format(neovim_path, path))
-
+    distutils.dir_util.copy_tree(git_nvim_path, home_path + "/.config/")
+    shutil.copy(git_path + ".init.vim", neovim_path)
+    shutil.copy((git_path + ".config/flake8", home_path + "/.config/")
 
     os.chdir(neovim_path)
     os.system("curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh")
@@ -70,10 +60,8 @@ def main():
     if args.ubuntu:
         os.system("echo let NVIM_TUI_ENABLE_CURSOR_SHAPE = 0 >> ~/.config/neovim/init.vim")
 
-    print("###############################")
-    print("#  neovim has been installed  #")
-    print("###############################")
-    print("\nPlease open init.vim in neovim and run :call dein#install() and :UpdateRemotePlugin")
+    print("neovim has succesfully been installed\n")
+    print("Please open init.vim in neovim and run :call dein#install() and :UpdateRemotePlugin")
 
 
 if __name__ == "__main__":

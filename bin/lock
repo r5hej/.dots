@@ -1,0 +1,2 @@
+#!/bin/bash
+i3lock -u -e -i ~/Pictures/lock/lock.png
