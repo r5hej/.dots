@@ -17,23 +17,41 @@ super + Escape
 
 # Increase brightness
 XF86MonBrightnessUp
-        xbacklight -inc 5
+        xbacklight -inc 5 && brightness
 
 # Decrease brightness
 XF86MonBrightnessDown
-        xbacklight -dec 5
+        xbacklight -dec 5 && brightness
 
 # Lower audio volume
 XF86AudioLowerVolume
-        amixer set Master 5%-
+        amixer set Master 5%- && sound_vol
 
 # Raise audio volume
 XF86AudioRaiseVolume
-        amixer set Master 5%+
+        amixer set Master 5%+ && sound_vol
 
 # Mute audio
 XF86AudioMute
-        amixer set Master toggle
+        #amixer set Master toggle
+
+# Pause/play song/video
+XF86AudioPlay
+        playerctl play-pause
+
+# Play next
+XF86AudioNext
+        playerctl next
+
+# Play previous
+XF86AudioPrev
+        playerctl previous
+
+
+
+# Full info notification
+super + q
+        notify_full
 
 #
 # bspwm hotkeys
@@ -58,6 +76,13 @@ super + y
 # swap the current node and the biggest node
 super + g
         bspc node -s biggest
+
+
+# Balance nodes in current desktop
+super + b
+        bspc node @/ -B
+
+
 
 #
 # state/flags
@@ -103,7 +128,7 @@ super + {o,i}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-        bspc {desktop -f,node -d} '^{1-9,10}'
+        bspc {desktop -f,node -d} '^{1-9,10}' && notify_desk
 
 #
 # preselect

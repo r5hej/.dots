@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Geometry
+duration=2
+barw=220
+barh=50
+
+pad_x=30
+pad_y=30
+
+monitor_width="$(xrandr | grep primary | awk -F '[ x+]' '{print $4}')"
+#monitor_height="$(xrandr | grep primary | awk -F '[ x+]' '{print $5}')"
+
+barx=$(($monitor_width-$pad_x-$barw))
+bary=$pad_y
+
+# Colors
+bar_fg="#9adfed"
+bar_bg="#210138"
+icon_fg="#518eef"
+
+# Fonts
+font="DejaVu-Sans-Mono-for-Powerline-12"
+font2="FontAwesome-14"
+
+# Commands
+focused="$(bspc query -T -d | jq  '.name' | sed -r 's/("|")//g')"
+desk_names=("I" "II" "III" "IV" "V" "VI" "VII" "VIII" "IX" "X")
+
+for i in ${desk_names[@]}; do
+    if [ "$i" = "$focused" ]; then
+        arr+=("")
+    else
+        arr+=("")
+    fi
+done
+
+# lemonbar creaton
+baropt="-g ${barw}x${barh}+${barx}+${bary} -d -B $bar_bg -F $bar_fg -f $font -f $font2"
+
+(echo "%{c}${arr[*]}"; sleep $duration) | lemonbar $baropt

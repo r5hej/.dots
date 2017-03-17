@@ -1,0 +1,52 @@
+#!/bin/sh
+
+# Geometry
+duration=5
+barw=420
+barh=50
+
+pad_x=30
+pad_y=30
+
+monitor_width="$(xrandr | grep primary | awk -F '[ x+]' '{print $4}')"
+#monitor_height="$(xrandr | grep primary | awk -F '[ x+]' '{print $5}')"
+
+barx=$(($monitor_width-$pad_x-$barw))
+bary=$pad_y
+
+# Colors
+# blue/purple/turkish
+bar_fg="#9adfed"
+bar_bg="#210138" #210138 #2f004f
+icon_fg="#518eef"
+
+#bar_fg="#b5a603"
+#bar_bg="#300530"
+#icon_fg="#847c1f"
+
+# Purple Gold
+#bar_fg="#9adfed"
+#bar_bg="#300530" #210138 #2f004f
+#icon_fg="#bfbb0b"
+
+
+# Fonts
+font="DejaVu-Sans-Mono-for-Powerline-12"
+font2="FontAwesome-14"
+
+# Commands
+sound="$(amixer get Master | tail -1 | awk '{print $4}' | tr -d '[]' | grep -o "[0-9]*")"
+power="$(acpi | awk '{print $4}' | tr -d ',%')"
+clock="$(date +%H:%M)"
+date="$(date +%d-%b-%Y)"
+brightness_cmd="$(xbacklight -get)"
+brightness="${brightness_cmd::-7}"
+
+# lemonbar creaton
+summary="$sound %{F$icon_fg}   %{F$bar_fg}$power %{F$icon_fg}   %{F$bar_fg}$clock %{F$icon_fg}   %{F$bar_fg}$date %{F$icon_fg}   %{F$bar_fg}$brightness %{F$icon_fg}"
+
+baropt="-g ${barw}x${barh}+${barx}+${bary} -d -B $bar_bg -F $bar_fg -f $font -f $font2"
+
+(echo "%{c}$summary"; sleep $duration) | lemonbar $baropt
+#echo " "
+#echo " "

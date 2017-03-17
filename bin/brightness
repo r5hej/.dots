@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# Geometry
+duration=1
+barw=90
+barh=50
+
+pad_x=30
+pad_y=30
+
+monitor_width="$(xrandr | grep primary | awk -F '[ x+]' '{print $4}')"
+#monitor_height="$(xrandr | grep primary | awk -F '[ x+]' '{print $5}')"
+
+barx=$(($monitor_width-$pad_x-$barw))
+bary=$pad_y
+
+# Colors
+bar_fg="#9adfed"
+bar_bg="#210138" #210138 #2f004f
+icon_fg="#518eef"
+#icon_fg="#0b8edd"
+
+
+# Fonts
+font="DejaVu-Sans-Mono-for-Powerline-12"
+font2="FontAwesome-14"
+
+# Commands
+brightness_cmd="$(xbacklight -get)"
+brightness="${brightness_cmd::-7}"
+
+# lemonbar creaton
+baropt="-g ${barw}x${barh}+${barx}+${bary} -d -B $bar_bg -F $bar_fg -f $font -f $font2"
+
+(echo "%{c}$brightness %{F$icon_fg} "; sleep $duration) | lemonbar $baropt

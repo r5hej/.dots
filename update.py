@@ -8,7 +8,7 @@ import subprocess
 
 
 def parser():
-    parser = argparse.ArgumentParser(description="Update neovim configs")
+    parser = argparse.ArgumentParser(description="Update dotfiles repository")
     parser.add_argument("-m", "--message", dest="message", action="store", help="The commit message")
     return parser.parse_args()
 
