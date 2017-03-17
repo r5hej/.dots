@@ -1,0 +1,2 @@
+#!/bin/sh
+amixer -c 0 cset numid=10 1
