@@ -3,8 +3,8 @@ import os
 import paths
 import shutil
 import argparse
-import distutils.core
 import subprocess
+import distutils.core
 
 
 def parser():
