@@ -145,6 +145,8 @@ nmap <leader><space>                :noh<cr>
 nmap <leader>ev                     :e ~/.config/nvim/init.vim<cr>
 nmap <leader>pi                     :call dein#install()<cr>
 nmap <leader>dd                     :bd<cr>
+vmap <leader>y                      "+y
+nmap <leader>p                      "+p
 
 " ============== Shortcuts ============== "
 " ============= Navigation ============== "

@@ -4,12 +4,14 @@
 
 # terminal emulator
 super + Return
-#       konsole
-       rofi -show run
+       konsole
 
 # program launcher
 #super + space
 #        rofi -show run
+
+super + d
+       rofi -show run
 
 # make sxhkd reload its configuration files:
 super + Escape
