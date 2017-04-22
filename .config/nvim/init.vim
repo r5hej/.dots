@@ -9,27 +9,33 @@ set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim/
 call dein#begin(expand('~/.config/nvim'))
 
 call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/denite.nvim')
+"call dein#add('Shougo/denite.nvim')
 call dein#add('Shougo/neopairs.vim')
 call dein#add('Shougo/deoplete.nvim')
 call dein#add('Shougo/neoinclude.vim')
 call dein#add('Shougo/context_filetype.vim')
 " call dein#add('Shougo/deol.nvim')
 
+call dein#add('kien/ctrlp.vim')
 call dein#add('mileszs/ack.vim')
-" call dein#add('neomake/neomake')
+"call dein#add('neomake/neomake')
+call dein#add('neomake/neomake', {'on_ft' : ['py']})
 call dein#add('tpope/vim-fugitive')
 call dein#add('scrooloose/nerdtree')
 call dein#add('vim-airline/vim-airline')
+call dein#add('jiangmiao/auto-pairs')
 call dein#add('scrooloose/nerdcommenter')
 call dein#add('easymotion/vim-easymotion')
 call dein#add('vim-airline/vim-airline-themes')
+
+if dein#check_install()
+    call dein#install()
+endif
 
 call dein#end()
 
 filetype plugin indent on
 syntax enable
-
 
 " ======================================== Plugins ======================================== "
 
@@ -145,6 +151,7 @@ nmap <leader><space>                :noh<cr>
 nmap <leader>ev                     :e ~/.config/nvim/init.vim<cr>
 nmap <leader>pi                     :call dein#install()<cr>
 nmap <leader>dd                     :bd<cr>
+nmap <leader>D                      :bd!<cr>
 vmap <leader>y                      "+y
 nmap <leader>p                      "+p
 

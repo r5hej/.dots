@@ -16,9 +16,15 @@ bary=$pad_y
 
 # Colors
 # blue/purple/turkish
-bar_fg="#9adfed"
-bar_bg="#210138" #210138 #2f004f
-icon_fg="#518eef"
+#bar_fg="#9adfed"
+#bar_bg="#210138" #210138 #2f004f
+#icon_fg="#518eef"
+
+bar_fg="#FFFCF7"
+bar_bg="#0A1517"
+icon_fg="#6E98A6"
+
+
 
 #bar_fg="#b5a603"
 #bar_bg="#300530"

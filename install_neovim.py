@@ -50,7 +50,7 @@ def main():
     os.chdir(home_path)
     distutils.dir_util.copy_tree(git_nvim_path, home_path + "/.config/")
     # shutil.copy(git_path + ".init.vim", neovim_path)
-    shutil.copy((git_path + ".config/flake8", home_path + "/.config/")
+    shutil.copy(git_path + ".config/flake8", home_path + "/.config/")
 
     os.chdir(neovim_path)
     os.system("curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh")
