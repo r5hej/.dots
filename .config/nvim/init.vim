@@ -52,7 +52,7 @@ set hlsearch
 set nobackup
 set et|retab
 set t_Co=256
-" set termguicolors
+"set termguicolors
 set expandtab
 set incsearch
 set smartcase
@@ -65,6 +65,7 @@ set shiftwidth=4
 set statusline+=%*
 set encoding=utf-8
 set listchars=tab:▸·,trail:⋅
+set guicursor=n-v-c:blinkon1
 
 let mapleader = ','
 au InsertLeave * set nopaste
@@ -154,12 +155,13 @@ nmap <leader>dd                     :bd<cr>
 nmap <leader>D                      :bd!<cr>
 vmap <leader>y                      "+y
 nmap <leader>p                      "+p
+map :W                                  :w
 
 " ============== Shortcuts ============== "
 " ============= Navigation ============== "
 
 imap jk                             <ESC>
-imap kj                             <ESC>
+imap kj                             <ESC>:wq<cr>
 
 nmap <C-k>                          <C-w>k
 nmap <C-j>                          <C-w>j

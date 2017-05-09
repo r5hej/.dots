@@ -168,4 +168,8 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
         bspc node -v {-20 0,0 20,0 -20,20 0}
 
+# move tile with mouse
+super + button1
+    bspc pointer -s floating -g move
+
 

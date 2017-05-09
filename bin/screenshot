@@ -1,3 +1,2 @@
 #!/bin/sh
 scrot -s "${1}.png" -e 'mv $f ~/Pictures/screenshots'
-#scrot -s '%Y-%m-%d.png' -e 'mv $f ~/Pictures/screenshots'

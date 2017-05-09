@@ -1,2 +1,6 @@
-#!/bin/bash
-i3lock -u -e -i ~/Pictures/lock/lock.png
+#!/bin/python3
+import random, os
+
+base = '/home/r5hej/Pictures/lock/'
+pic = os.listdir(base)
+os.system('i3lock -u -e -i {0}{1}'.format(base, random.choice(pic)))
