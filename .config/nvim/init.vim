@@ -70,6 +70,8 @@ set guicursor=n-v-c:blinkon1
 let mapleader = ','
 au InsertLeave * set nopaste
 
+let g:tex_flavor='latex'
+
 " =============== Neovim ================ "
 " =============== Colors ================ "
 
@@ -110,12 +112,9 @@ let g:neomake_autoline_sign_column_always = 1
 " ======================================== Setting ======================================== "
 
 " ===================================== File specific ===================================== "
-" ================ Latex ================ "
 
 au FileType tex setlocal spell spelllang=en_us
-" autocmd FileType tex nnoremap <leader>temp :-1read ~/.config/nvim/templates/latex<cr>
 
-" ================ Latex ================ "
 " ===================================== File specific ===================================== "
 
 " ======================================= Key Maps ======================================== "
@@ -161,7 +160,7 @@ map :W                                  :w
 " ============= Navigation ============== "
 
 imap jk                             <ESC>
-imap kj                             <ESC>:wq<cr>
+imap kj                             <ESC>
 
 nmap <C-k>                          <C-w>k
 nmap <C-j>                          <C-w>j
