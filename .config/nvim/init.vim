@@ -134,11 +134,6 @@ inoremap <expr><tab>                pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><S-tab>              pumvisible() ? "\<c-p>" : "\<S-tab>"
 
 " ================ Deople =============== "
-" =============== Denite ================ "
-
-nmap <leader>s                      :Denite file_rec<cr>
-
-" =============== Denite ================ "
 " =============== Neomake =============== "
 
 nmap <leader>lo                     :lopen<cr>
@@ -149,12 +144,11 @@ nmap <leader>lc                     :lclose<cr>
 
 nmap <leader><space>                :noh<cr>
 nmap <leader>ev                     :e ~/.config/nvim/init.vim<cr>
-nmap <leader>pi                     :call dein#install()<cr>
 nmap <leader>dd                     :bd<cr>
 nmap <leader>D                      :bd!<cr>
 vmap <leader>y                      "+y
 nmap <leader>p                      "+p
-map :W                                  :w
+map :W                              :w
 
 " ============== Shortcuts ============== "
 " ============= Navigation ============== "
@@ -165,6 +159,7 @@ imap kj                             <ESC>
 nmap <C-k>                          <C-w>k
 nmap <C-j>                          <C-w>j
 nmap <C-l>                          <C-w>l
+nmap <C-h>                          <C-w>h
 
 nmap <leader>j                      :m+1<cr>
 nmap <leader>k                      :m-2<cr>
@@ -174,10 +169,10 @@ nmap <S-tab>                        :bprevious<cr>
 
 if has('nvim')
     let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-    " Hack to get C-h working in neovim
-    nmap <BS> <C-W>h
     tnoremap <Esc> <C-\><C-n>
 endif
+
+
 
 " ============= Navigation ============== "
 " ======================================= Key Maps ======================================== "
