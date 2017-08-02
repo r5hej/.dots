@@ -1,0 +1,167 @@
+#+OPTIONS: toc:nil num:nil
+
+* Necessary defaults
+  Defaults settings. I have disabled backup files and auto-save files, which probably would make some emacs users call me insane, but for my small for fun projects it ain't necessary.
+  Also i find it incredibly with all those unnecessary redundancies.
+  #+BEGIN_SRC emacs-lisp
+  (setq-default
+   scroll-conservatively most-positive-fixnum                               ;
+   scroll-margin 5                                                          ;
+   indent-tabs-mode nil                                                     ; Indent with spaces
+   ;; show-trailing-whitespace t                                            ; Show trailing whitespace
+   tab-width 4)                                                             ; Set tab width
+  (fset 'yes-or-no-p 'y-or-n-p)                                             ; Changes yes-or-no to y-or-n
+  (blink-cursor-mode 0)                                                     ; Stop cursor from blinking
+  (menu-bar-mode 0)                                                         ; Remove menu-bar
+  (scroll-bar-mode 0)                                                       ; Remove scroll-bar
+  (tool-bar-mode 0)                                                         ; Remove tool-bar
+  (tooltip-mode 0)                                                          ; Remove tooltip
+  (setq vc-follow-symlinks t)                                               ; Follow symbolic links
+  (setq backup-inhibited t)                                                 ; Disable backup files
+  (setq auto-save-default nil)                                              ; Disable auto-save files
+  (set-face-attribute 'default nil                                          ; Set default font
+                      :family "DejaVu Sans Mono for Powerline"
+                      :foundry "PfEd"
+                      :height 127
+                      :weight 'bold)
+  #+END_SRC
+* Evil
+  When using emacs, there can not be enough be enough evil. Evil makes everything better.
+  #+BEGIN_SRC emacs-lisp
+  (evil-mode 1)
+  #+END_SRC
+  
+  I prefer using "jk" or "kj" for leaving insert-mode, hence the need for keychord.
+  #+BEGIN_SRC emacs-lisp
+  (key-chord-mode 1)
+  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+  #+END_SRC
+
+  I use =evil-leader=.
+  #+BEGIN_SRC emacs-lisp
+  (global-evil-leader-mode)
+  #+END_SRC
+
+  I prefer my leadey key being ",".
+  #+BEGIN_SRC emacs-lisp
+  (evil-leader/set-leader ",")
+  
+  (evil-leader/set-key
+   "cc" 'evilnc-comment-or-uncomment-lines
+   "y" 'simpleclip-copy
+   "p" 'simpleclip-paste
+   "le" 'flycheck-list-errors
+   "dd" 'delete-other-windows
+   "dw" 'delete-window
+   "book" 'bookmark-bmenu-list
+  )
+  #+END_SRC
+  
+* Org
+  #+BEGIN_SRC emacs-lisp
+  (require 'evil-org)
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))
+  #+END_SRC
+  
+  Enable spell-checking on Org-mode.
+  #+BEGIN_SRC emacs-lisp
+  (add-hook 'org-mode-hook 'flyspell-mode) 
+  #+END_SRC
+* Flycheck
+  #+BEGIN_SRC emacs-lisp
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  #+END_SRC
+* Company
+  #+BEGIN_SRC emacs-lisp
+  (setq company-begin-commands '(self-insert-command)
+        company-echo-delay 0
+        company-idle-delay 0.3
+        company-minimum-prefix-length 2
+  		company-require-match nil
+  		company-tooltip-align-annotations t)
+  
+  (add-hook 'after-init-hook 'global-company-mode)
+  #+END_SRC
+* Magit
+  #+BEGIN_SRC emacs-lisp
+ (require 'evil-magit) 
+  #+END_SRC
+
+  #+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x g") 'magit-status) 
+  #+END_SRC
+  
+  #+BEGIN_SRC emacs-lisp
+ (add-hook 'git-commit-mode-hook 'turn-on-flyspell) 
+  #+END_SRC
+* Ido
+  #+BEGIN_SRC emacs-lisp
+  (setq ido-enable-flex-matching t)
+  (setq ido-everywhere t)
+  (ido-mode 1)
+  (flx-ido-mode 1) ; better/faster matching
+  (setq ido-create-new-buffer 'always) ; don't confirm to create new buffers
+  (ido-vertical-mode 1)
+  #+END_SRC
+
+  #+BEGIN_SRC emacs-lisp
+  (defun ido-define-keys ()
+      (define-key ido-completion-map (kbd "M-n") 'ido-next-match)
+      (define-key ido-completion-map (kbd "M-p") 'ido-prev-match))
+	  
+  (add-hook 'ido-setup-hook 'ido-define-keys)
+
+  (define-key evil-normal-state-map (kbd "C-f") 'find-file)
+  (define-key evil-normal-state-map (kbd "C-b") 'ido-switch-buffer)
+  #+END_SRC
+* Projectile
+  #+BEGIN_SRC emacs-lisp
+  (projectile-mode 1)
+  (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file)
+  #+END_SRC
+* Android
+  #+BEGIN_SRC emacs-lisp
+  (require 'android-mode)
+  (custom-set-variables '(android-mode-sdk-dir "~/opt/android"))
+  #+END_SRC
+* The small ones
+** Simpleclip
+   #+BEGIN_SRC emacs-lisp
+   (require 'simpleclip)
+   (simpleclip-mode 1)
+   #+END_SRC
+* Beauty corner
+** Theme
+   #+BEGIN_SRC emacs-lisp
+   (setq spacemacs-theme-comment-bg nil)
+   (setq spacemacs-theme-comment-italic t)
+   (load-theme 'spacemacs-dark t)
+   #+END_SRC
+** Dashboard
+   #+BEGIN_SRC emacs-lisp
+   (require 'dashboard)
+   (dashboard-setup-startup-hook)
+   (setq dashboard-items '((bookmarks)
+   						(projects)
+   						(recents . 5)))
+   #+END_SRC
+   
+   #+BEGIN_SRC emacs-lisp
+   (setq dashboard-banner-logo-title "Good to see ya bruh ;)")
+   #+END_SRC
+   
+   #+BEGIN_SRC emacs-lisp
+   (setq dashboard-startup-banner 'logo)
+   ;; (setq dashboard-startup-banner "path/to/image")
+   #+END_SRC
+** Spaceline
+   #+BEGIN_SRC emacs-lisp
+   (require 'spaceline-config)
+   
+   (setq powerline-default-separator 'wave)
+   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+   (spaceline-toggle-major-mode-on)
+   (spaceline-toggle-minor-modes-off)
+   (spaceline-spacemacs-theme)
+   #+END_SRC

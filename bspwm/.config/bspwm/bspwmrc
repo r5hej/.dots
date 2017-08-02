@@ -17,6 +17,8 @@ bspc config gapless_monocle      true
 
 bspc config presel_feedback_color \#111f35
 
+bspc rule -a Emacs state=tiled
+
 
 
 
