@@ -2,7 +2,7 @@
 
 * Necessary defaults
   Defaults settings. I have disabled backup files and auto-save files, which probably would make some emacs users call me insane, but for my small for fun projects it ain't necessary.
-  Also i find it incredibly with all those unnecessary redundancies.
+  Also i find it incredibly annoying with all those unnecessary redundancies.
   #+BEGIN_SRC emacs-lisp
   (setq-default
    scroll-conservatively most-positive-fixnum                               ;
@@ -16,7 +16,6 @@
   (scroll-bar-mode 0)                                                       ; Remove scroll-bar
   (tool-bar-mode 0)                                                         ; Remove tool-bar
   (tooltip-mode 0)                                                          ; Remove tooltip
-  (setq vc-follow-symlinks t)                                               ; Follow symbolic links
   (setq backup-inhibited t)                                                 ; Disable backup files
   (setq auto-save-default nil)                                              ; Disable auto-save files
   (set-face-attribute 'default nil                                          ; Set default font
@@ -42,7 +41,7 @@
   (global-evil-leader-mode)
   #+END_SRC
 
-  I prefer my leadey key being ",".
+  I prefer my leader key being ",".
   #+BEGIN_SRC emacs-lisp
   (evil-leader/set-leader ",")
   
@@ -133,10 +132,21 @@
    #+END_SRC
 * Beauty corner
 ** Theme
-   #+BEGIN_SRC emacs-lisp
+   # #+BEGIN_SRC emacs-lisp
    (setq spacemacs-theme-comment-bg nil)
    (setq spacemacs-theme-comment-italic t)
    (load-theme 'spacemacs-dark t)
+   #+END_SRC
+   #+BEGIN_SRC emacs-lisp
+   (setq solarized-scale-org-headlines t)
+   (setq solarized-high-contrast-mode-line t)
+   (load-theme 'solarized-dark t) 
+   #+END_SRC
+   # #+BEGIN_SRC emacs-lisp
+   (load-theme 'molokai t)
+   #+END_SRC
+   # #+BEGIN_SRC emacs-lisp
+   (load-theme 'darkokai t)
    #+END_SRC
 ** Dashboard
    #+BEGIN_SRC emacs-lisp
@@ -165,3 +175,4 @@
    (spaceline-toggle-minor-modes-off)
    (spaceline-spacemacs-theme)
    #+END_SRC
+   

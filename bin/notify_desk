@@ -25,11 +25,14 @@ font2="FontAwesome-14"
 
 # Commands
 focused="$(bspc query -T -d | jq  '.name' | sed -r 's/("|")//g')"
+active_desk="bspc query -N -d"
 desk_names=("I" "II" "III" "IV" "V" "VI" "VII" "VIII" "IX" "X")
 
 for i in ${desk_names[@]}; do
     if [ "$i" = "$focused" ]; then
         arr+=("")
+    elif [ "$($active_desk $i)" ]; then
+        arr+=("")
     else
         arr+=("")
     fi

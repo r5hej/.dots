@@ -5,6 +5,8 @@
 (require 'pallet)
 (pallet-mode t)
 
+(setq vc-follow-symlinks t)                                               ; Follow symbolic links
+
 (org-babel-load-file "~/.emacs.d/configuration.org")
 
 (setq custom-file "~/.emacs.d/custom.el")
