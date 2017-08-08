@@ -51,3 +51,4 @@
 (depends-on "spacemacs-theme")
 (depends-on "undo-tree")
 (depends-on "with-editor")
+(depends-on "yasnippet")

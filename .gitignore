@@ -4,6 +4,7 @@ emacs/.emacs.d/*
 !emacs/.emacs.d/Cask
 !emacs/.emacs.d/custom.el
 !emacs/.emacs.d/configuration.org
+!emacs/.emacs.d/snippets
 
 # Neovim
 nvim/.config/nvim/*

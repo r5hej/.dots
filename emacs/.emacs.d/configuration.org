@@ -50,9 +50,11 @@
    "y" 'simpleclip-copy
    "p" 'simpleclip-paste
    "le" 'flycheck-list-errors
-   "dd" 'delete-other-windows
+   "dd" 'kill-buffer-and-window
+   "ow" 'delete-other-window
    "dw" 'delete-window
    "book" 'bookmark-bmenu-list
+   "git" 'magit-status
   )
   #+END_SRC
   
@@ -84,15 +86,16 @@
   #+END_SRC
 * Magit
   #+BEGIN_SRC emacs-lisp
- (require 'evil-magit) 
+  (require 'evil-magit)
   #+END_SRC
 
   #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-x g") 'magit-status) 
+  (add-hook 'git-commit-mode-hook 'turn-on-flyspell)
   #+END_SRC
-  
+* Yasnippet
   #+BEGIN_SRC emacs-lisp
- (add-hook 'git-commit-mode-hook 'turn-on-flyspell) 
+  (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+  (yas-global-mode 1)
   #+END_SRC
 * Ido
   #+BEGIN_SRC emacs-lisp
