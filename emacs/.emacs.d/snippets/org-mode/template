@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: template
+# key: temp
+# --
+#+TITLE:
+#+AUTHOR:
+#+EMAIL:
+#+OPTIONS: toc:nil num:nil html-postamble:nil

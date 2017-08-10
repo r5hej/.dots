@@ -1,7 +1,7 @@
 #+OPTIONS: toc:nil num:nil
 
 * Necessary defaults
-  Defaults settings. I have disabled backup files and auto-save files, which probably would make some emacs users call me insane, but for my small for fun projects it ain't necessary.
+  Default settings. I have disabled backup files and auto-save files, which probably would make some emacs users call me insane, but for my small for fun projects it ain't necessary.
   Also i find it incredibly annoying with all those unnecessary redundancies.
   #+BEGIN_SRC emacs-lisp
   (setq-default
@@ -23,25 +23,23 @@
                       :foundry "PfEd"
                       :height 127
                       :weight 'bold)
+  (setq confirm-nonexistent-file-or-buffer nil)
+  (show-paren-mode 1)
   #+END_SRC
 * Evil
-  When using emacs, there can not be enough be enough evil. Evil makes everything better.
   #+BEGIN_SRC emacs-lisp
   (evil-mode 1)
   #+END_SRC
   
-  I prefer using "jk" or "kj" for leaving insert-mode, hence the need for keychord.
   #+BEGIN_SRC emacs-lisp
   (key-chord-mode 1)
   (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
   #+END_SRC
-
-  I use =evil-leader=.
+** Evil Leader
   #+BEGIN_SRC emacs-lisp
   (global-evil-leader-mode)
   #+END_SRC
 
-  I prefer my leader key being ",".
   #+BEGIN_SRC emacs-lisp
   (evil-leader/set-leader ",")
   
@@ -50,19 +48,22 @@
    "y" 'simpleclip-copy
    "p" 'simpleclip-paste
    "le" 'flycheck-list-errors
-   "dd" 'kill-buffer-and-window
-   "ow" 'delete-other-window
+   "bd" 'kill-buffer-and-window
+   "dow" 'delete-other-windows
    "dw" 'delete-window
    "book" 'bookmark-bmenu-list
    "git" 'magit-status
   )
   #+END_SRC
-  
 * Org
   #+BEGIN_SRC emacs-lisp
   (require 'evil-org)
   (add-hook 'org-mode-hook 'evil-org-mode)
   (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))
+  #+END_SRC
+  
+  #+BEGIN_SRC emacs-lisp
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))) 
   #+END_SRC
   
   Enable spell-checking on Org-mode.
@@ -102,8 +103,8 @@
   (setq ido-enable-flex-matching t)
   (setq ido-everywhere t)
   (ido-mode 1)
+  (setq ido-create-new-buffer 'always)
   (flx-ido-mode 1) ; better/faster matching
-  (setq ido-create-new-buffer 'always) ; don't confirm to create new buffers
   (ido-vertical-mode 1)
   #+END_SRC
 
@@ -133,6 +134,11 @@
    (require 'simpleclip)
    (simpleclip-mode 1)
    #+END_SRC
+** Aggressive indent
+   #+BEGIN_SRC emacs-lisp
+   (global-aggressive-indent-mode 1) 
+   #+END_SRC
+   
 * Beauty corner
 ** Theme
    # #+BEGIN_SRC emacs-lisp
@@ -143,13 +149,7 @@
    #+BEGIN_SRC emacs-lisp
    (setq solarized-scale-org-headlines t)
    (setq solarized-high-contrast-mode-line t)
-   (load-theme 'solarized-dark t) 
-   #+END_SRC
-   # #+BEGIN_SRC emacs-lisp
-   (load-theme 'molokai t)
-   #+END_SRC
-   # #+BEGIN_SRC emacs-lisp
-   (load-theme 'darkokai t)
+   (load-theme 'solarized-dark t)
    #+END_SRC
 ** Dashboard
    #+BEGIN_SRC emacs-lisp
@@ -178,4 +178,3 @@
    (spaceline-toggle-minor-modes-off)
    (spaceline-spacemacs-theme)
    #+END_SRC
-   
