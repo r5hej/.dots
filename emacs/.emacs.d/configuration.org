@@ -64,6 +64,9 @@
   
   #+BEGIN_SRC emacs-lisp
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))) 
+  (setq org-ellipsis "⤵")
+  (setq org-src-fontify-natively t)
+  (setq org-src-tab-acts-natively t)
   #+END_SRC
   
   Enable spell-checking on Org-mode.
