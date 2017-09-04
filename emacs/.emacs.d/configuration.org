@@ -4,27 +4,27 @@
   Default settings. I have disabled backup files and auto-save files, which probably would make some emacs users call me insane, but for my small for fun projects it ain't necessary.
   Also i find it incredibly annoying with all those unnecessary redundancies.
   #+BEGIN_SRC emacs-lisp
-  (setq-default
-   scroll-conservatively most-positive-fixnum                               ;
-   scroll-margin 5                                                          ;
-   indent-tabs-mode nil                                                     ; Indent with spaces
-   ;; show-trailing-whitespace t                                            ; Show trailing whitespace
-   tab-width 4)                                                             ; Set tab width
-  (fset 'yes-or-no-p 'y-or-n-p)                                             ; Changes yes-or-no to y-or-n
-  (blink-cursor-mode 0)                                                     ; Stop cursor from blinking
-  (menu-bar-mode 0)                                                         ; Remove menu-bar
-  (scroll-bar-mode 0)                                                       ; Remove scroll-bar
-  (tool-bar-mode 0)                                                         ; Remove tool-bar
-  (tooltip-mode 0)                                                          ; Remove tooltip
-  (setq backup-inhibited t)                                                 ; Disable backup files
-  (setq auto-save-default nil)                                              ; Disable auto-save files
-  (set-face-attribute 'default nil                                          ; Set default font
-                      :family "DejaVu Sans Mono for Powerline"
-                      :foundry "PfEd"
-                      :height 127
-                      :weight 'bold)
-  (setq confirm-nonexistent-file-or-buffer nil)
-  (show-paren-mode 1)
+    (setq-default
+     scroll-conservatively most-positive-fixnum                               ;
+     scroll-margin 5                                                          ;
+     indent-tabs-mode nil                                                     ; Indent with spaces
+     ;; show-trailing-whitespace t                                            ; Show trailing whitespace
+     tab-width 4)                                                             ; Set tab width
+    (fset 'yes-or-no-p 'y-or-n-p)                                             ; Changes yes-or-no to y-or-n
+    (blink-cursor-mode 0)                                                     ; Stop cursor from blinking
+    (menu-bar-mode 0)                                                         ; Remove menu-bar
+    (scroll-bar-mode 0)                                                       ; Remove scroll-bar
+    (tool-bar-mode 0)                                                         ; Remove tool-bar
+    (tooltip-mode 0)                                                          ; Remove tooltip
+    (setq backup-inhibited t)                                                 ; Disable backup files
+    (setq auto-save-default nil)                                              ; Disable auto-save files
+    (set-face-attribute 'default nil                                          ; Set default font
+                        :family "DejaVu Sans Mono for Powerline"
+                        :foundry "PfEd"
+                        :height 127
+                        :weight 'bold)
+    (setq confirm-nonexistent-file-or-buffer nil)
+    (show-paren-mode 1)
   #+END_SRC
 * Evil
   #+BEGIN_SRC emacs-lisp
@@ -39,22 +39,29 @@
   #+BEGIN_SRC emacs-lisp
   (global-evil-leader-mode)
   #+END_SRC
-
-  #+BEGIN_SRC emacs-lisp
-  (evil-leader/set-leader ",")
   
-  (evil-leader/set-key
-   "cc" 'evilnc-comment-or-uncomment-lines
-   "y" 'simpleclip-copy
-   "p" 'simpleclip-paste
-   "le" 'flycheck-list-errors
-   "bd" 'kill-buffer-and-window
-   "dow" 'delete-other-windows
-   "dw" 'delete-window
-   "book" 'bookmark-bmenu-list
-   "git" 'magit-status
-  )
+  #+BEGIN_SRC emacs-lisp
+    (evil-leader/set-leader ",")
+
+    (evil-leader/set-key
+     "cc" 'evilnc-comment-or-uncomment-lines
+     "y" 'simpleclip-copy
+     "p" 'simpleclip-paste
+     "le" 'flycheck-list-errors
+     "bd" 'kill-buffer-and-window
+     "dow" 'delete-other-windows
+     "dw" 'delete-window
+     "book" 'bookmark-bmenu-list
+     "git" 'magit-status
+     "evcf" '(lambda ()(interactive) (load-file "~/.emacs.d/init.el"))
+     "ecf" '(lambda ()(interactive) (find-file "~/.emacs.d/configuration.org"))
+     "f" 'avy-goto-char-timer
+    )
   #+END_SRC
+** Evil Surround
+   #+BEGIN_SRC emacs-lisp
+   (global-evil-surround-mode 1)
+   #+END_SRC
 * Org
   #+BEGIN_SRC emacs-lisp
   (require 'evil-org)
@@ -131,6 +138,13 @@
   (require 'android-mode)
   (custom-set-variables '(android-mode-sdk-dir "~/opt/android"))
   #+END_SRC
+* Avy
+  #+BEGIN_SRC emacs-lisp
+    (setq avy-background t
+          avy-timeout-seconds 0.8
+          avy-style 'pre)
+  #+END_SRC
+
 * The small ones
 ** Simpleclip
    #+BEGIN_SRC emacs-lisp
@@ -141,7 +155,6 @@
    #+BEGIN_SRC emacs-lisp
    (global-aggressive-indent-mode 1) 
    #+END_SRC
-   
 * Beauty corner
 ** Theme
    # #+BEGIN_SRC emacs-lisp

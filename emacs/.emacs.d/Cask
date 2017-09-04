@@ -19,6 +19,7 @@
 (depends-on "evil-magit")
 (depends-on "evil-nerd-commenter")
 (depends-on "evil-org")
+(depends-on "evil-surround")
 (depends-on "f")
 (depends-on "flx")
 (depends-on "flx-ido")
