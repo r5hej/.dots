@@ -148,7 +148,43 @@
           avy-timeout-seconds 0.8
           avy-style 'pre)
   #+END_SRC
+* Petite Chez Scheme
+  #+BEGIN_SRC emacs-lisp
+    (defun run-petite-interactively ()
+      (interactive)
+      (let ((inferior-lisp-program "/usr/bin/petite"))  ; assumes that you have installed Petite Chez Scheme here...
+        (run-lisp inferior-lisp-program)))
 
+    (defun lisp-eval-buffer () 
+      (interactive)
+      (lisp-eval-region (point-min) (point-max)))
+
+
+    (defun extend-scheme-mode ()
+      (define-key scheme-mode-map "\C-\M-x" 'lisp-eval-defun)      ; always available
+      (define-key scheme-mode-map "\C-\M-y" 'lisp-eval-region)     ; available if you are in scheme mode
+      (define-key scheme-mode-map "\C-\M-z" 'lisp-eval-buffer)     ; lisp-eval-buffer is defined above
+
+                                            ; Menu support:
+      (define-key scheme-mode-map [menu-bar scheme schemeeval]
+        (cons "Evaluate Scheme form(s)" (make-sparse-keymap "SchemeEval")))
+
+      (define-key scheme-mode-map [menu-bar scheme schemeeval eval-buffer]
+        '("Current Buffer" . lisp-eval-buffer))
+
+      (define-key scheme-mode-map [menu-bar scheme schemeeval eval-region]
+        '("Current Region" . lisp-eval-region))
+
+      (define-key scheme-mode-map [menu-bar scheme schemeeval eval-def]
+        '("Current Form" . lisp-eval-defun))
+      )
+
+                                            ; Extends Scheme mode with key bindings for lisp-eval-defun, lisp-eval-region, and lisp-eval-buffer.
+    (setq scheme-mode-hook
+          (if (boundp 'scheme-mode-hook)
+              (cons 'extend-scheme-mode scheme-mode-hook)
+            (list 'extend-scheme-mode)))
+  #+END_SRC
 * The small ones
 ** Simpleclip
    #+BEGIN_SRC emacs-lisp
