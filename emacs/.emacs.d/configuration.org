@@ -44,19 +44,19 @@
     (evil-leader/set-leader ",")
 
     (evil-leader/set-key
-     "cc" 'evilnc-comment-or-uncomment-lines
-     "y" 'simpleclip-copy
-     "p" 'simpleclip-paste
-     "le" 'flycheck-list-errors
-     "bd" 'kill-buffer-and-window
-     "dow" 'delete-other-windows
-     "dw" 'delete-window
-     "book" 'bookmark-bmenu-list
-     "git" 'magit-status
-     "evcf" '(lambda ()(interactive) (load-file "~/.emacs.d/init.el"))
-     "ecf" '(lambda ()(interactive) (find-file "~/.emacs.d/configuration.org"))
-     "f" 'avy-goto-char-timer
-    )
+      "cc" 'evilnc-comment-or-uncomment-lines
+      "y" 'simpleclip-copy
+      "p" 'simpleclip-paste
+      "le" 'flycheck-list-errors
+      "bd" 'kill-buffer-and-window
+      "dow" 'delete-other-windows
+      "dw" 'delete-window
+      "book" 'bookmark-bmenu-list
+      "git" 'magit-status
+      "evcf" '(lambda ()(interactive) (load-file "~/.emacs.d/init.el"))
+      "ecf" '(lambda ()(interactive) (find-file "~/.emacs.d/configuration.org"))
+      "f" 'avy-goto-char-timer
+      )
   #+END_SRC
 ** Evil Surround
    #+BEGIN_SRC emacs-lisp
@@ -85,7 +85,7 @@
   (add-hook 'after-init-hook #'global-flycheck-mode)
   #+END_SRC
 * Company
-  #+BEGIN_SRC emacs-lisp
+  ##+BEGIN_SRC emacs-lisp
   (setq company-begin-commands '(self-insert-command)
         company-echo-delay 0
         company-idle-delay 0.3
@@ -94,6 +94,10 @@
   		company-tooltip-align-annotations t)
   
   (add-hook 'after-init-hook 'global-company-mode)
+  #+END_SRC
+* Auto-complete
+  #+BEGIN_SRC emacs-lisp
+    (ac-config-default)
   #+END_SRC
 * Magit
   #+BEGIN_SRC emacs-lisp
@@ -153,44 +157,39 @@
    #+END_SRC
 ** Aggressive indent
    #+BEGIN_SRC emacs-lisp
-   (global-aggressive-indent-mode 1) 
+   (global-aggressive-indent-mode 1)
    #+END_SRC
 * Beauty corner
 ** Theme
-   # #+BEGIN_SRC emacs-lisp
-   (setq spacemacs-theme-comment-bg nil)
-   (setq spacemacs-theme-comment-italic t)
-   (load-theme 'spacemacs-dark t)
-   #+END_SRC
    #+BEGIN_SRC emacs-lisp
-   (setq solarized-scale-org-headlines t)
-   (setq solarized-high-contrast-mode-line t)
-   (load-theme 'solarized-dark t)
+    (setq solarized-scale-org-headlines t)
+    (setq solarized-high-contrast-mode-line t)
+    (load-theme 'solarized-dark t)
    #+END_SRC
 ** Dashboard
    #+BEGIN_SRC emacs-lisp
-   (require 'dashboard)
-   (dashboard-setup-startup-hook)
-   (setq dashboard-items '((bookmarks)
-   						(projects)
-   						(recents . 5)))
+    (require 'dashboard)
+    (dashboard-setup-startup-hook)
+    (setq dashboard-items '((bookmarks)
+                            (projects)
+                            (recents . 5)))
    #+END_SRC
    
    #+BEGIN_SRC emacs-lisp
-   (setq dashboard-banner-logo-title "Good to see ya bruh ;)")
+    (setq dashboard-banner-logo-title "U WOT M8!")
    #+END_SRC
-   
+
    #+BEGIN_SRC emacs-lisp
-   (setq dashboard-startup-banner 'logo)
-   ;; (setq dashboard-startup-banner "path/to/image")
+    (setq dashboard-startup-banner 'logo)
+    ;; (setq dashboard-startup-banner "path/to/image")
    #+END_SRC
 ** Spaceline
    #+BEGIN_SRC emacs-lisp
-   (require 'spaceline-config)
-   
-   (setq powerline-default-separator 'wave)
-   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
-   (spaceline-toggle-major-mode-on)
-   (spaceline-toggle-minor-modes-off)
-   (spaceline-spacemacs-theme)
+    (require 'spaceline-config)
+
+    (setq powerline-default-separator 'wave)
+    (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+    (spaceline-toggle-major-mode-on)
+    (spaceline-toggle-minor-modes-off)
+    (spaceline-spacemacs-theme)
    #+END_SRC

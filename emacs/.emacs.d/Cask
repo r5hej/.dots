@@ -7,6 +7,7 @@
 (depends-on "all-the-icons")
 (depends-on "android-mode")
 (depends-on "async")
+(depends-on "auto-complete")
 (depends-on "avy")
 (depends-on "cask")
 (depends-on "company")
