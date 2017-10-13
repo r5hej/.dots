@@ -6,7 +6,7 @@
   #+BEGIN_SRC emacs-lisp
     (setq-default
      scroll-conservatively most-positive-fixnum                               ;
-     scroll-margin 5                                                          ;
+     ;; scroll-margin 5                                                          ;
      indent-tabs-mode nil                                                     ; Indent with spaces
      ;; show-trailing-whitespace t                                            ; Show trailing whitespace
      tab-width 4)                                                             ; Set tab width
@@ -56,6 +56,7 @@
       "evcf" '(lambda ()(interactive) (load-file "~/.emacs.d/init.el"))
       "ecf" '(lambda ()(interactive) (find-file "~/.emacs.d/configuration.org"))
       "f" 'avy-goto-char-timer
+      "sc" 'lisp-eval-buffer
       )
   #+END_SRC
 ** Evil Surround
@@ -184,6 +185,39 @@
           (if (boundp 'scheme-mode-hook)
               (cons 'extend-scheme-mode scheme-mode-hook)
             (list 'extend-scheme-mode)))
+  #+END_SRC
+* C# mode
+  #+BEGIN_SRC emacs-lisp
+ (defun my-csharp-mode-hook ()
+  (electric-pair-local-mode 1) ;; Emacs 25
+  )
+(add-hook 'csharp-mode-hook 'my-csharp-mode-hook) 
+  #+END_SRC
+* Omnisharp
+  #+BEGIN_SRC emacs-lisp
+    (add-hook 'csharp-mode-hook 'omnisharp-mode) 
+  #+END_SRC
+* Web-mode
+  #+BEGIN_SRC elisp
+    (require 'web-mode)
+    (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  #+END_SRC
+* Haskell-mode
+  #+BEGIN_SRC elisp
+    (defun haskell-process-trigger-suggestions-ad (orig-fun &rest args)
+      (turn-off-haskell-doc)
+      (apply orig-fun args)
+      (turn-on-haskell-doc))
+
+    (advice-add 'haskell-process-trigger-suggestions
+                :around #'haskell-process-trigger-suggestions-ad)
   #+END_SRC
 * The small ones
 ** Simpleclip
