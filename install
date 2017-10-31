@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function emacsInstall {
         stow emacs
@@ -13,37 +13,32 @@ function bspwmInstall {
         ln -s $HOME/.dotfiles/flake8 $HOME/.config/
 }
 
-for i in "$@"; do
-        case $i in
-                "-e")
-                        emacsInstall
-
-                ;;
-                "-n")
-                        stow nvim
-                ;;
-                "-v")
-                        stow vim
-                ;;
-                "-z")
-                        ln -s $HOME/.dotfiles/zsh/honukai.zsh-theme $HOME/.oh-my-zsh/themes/
-                ;;
-                "-b")
-                        bspwmInstall
-                ;;
-                "-all")
-                        emacsInstall
-                        stow nvim
-                        bspwmInstall
-                        ln -s $HOME/.dotfiles/zsh/honukai.zsh-theme $HOME/.oh-my-zsh/themes/
-                ;;
-                "-h")
-                        echo "  -e            install emacs"
-                        echo "  -n            install neovim"
-                        echo "  -v            install vim"
-                        echo "  -z            install zsh-theme"
-                        echo "  -b            install bspwm"
-                        echo "  -all          install everything"
-                ;;
-        esac
+while getopts ":envzbh" opt; do
+  case $opt in
+    e)
+        emacsInstall
+      ;;
+    n)
+        stow nvim
+      ;;
+    v)
+        stow vim
+      ;;
+    z)
+        ln -s $HOME/.dotfiles/zsh/honukai.zsh-theme $HOME/.oh-my-zsh/themes/
+      ;;
+    b)
+        bspwmInstall
+      ;;
+    h)
+        echo "  -e            install emacs"
+        echo "  -n            install neovim"
+        echo "  -v            install vim"
+        echo "  -z            install zsh-theme"
+        echo "  -b            install bspwm"
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+  esac
 done
