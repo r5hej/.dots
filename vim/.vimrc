@@ -65,8 +65,12 @@ colorscheme monokai
 
 nmap <C-n>                          :NERDTreeToggle<cr>
 
-vmap <leader>y                      "+y
-nmap <leader>p                      "+p
+nmap <leader>f                      <Plug>(easymotion-sn)
+
+nmap <leader><space>                :noh<cr>
+nmap <leader>ev                     :e ~/.config/nvim/init.vim<cr>
+nmap <leader>dd                     :bd<cr>
+nmap <leader>D                      :bd!<cr>
 
 imap jk                             <ESC>
 imap kj                             <ESC>
