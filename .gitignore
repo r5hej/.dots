@@ -13,3 +13,7 @@ nvim/.config/nvim/*
 !nvim/.config/nvim/colors
 !nvim/.config/nvim/ftplugin
 !nvim/.config/nvim/templates
+
+# Vim
+vim/.vim/*
+!vim/.vim/colors

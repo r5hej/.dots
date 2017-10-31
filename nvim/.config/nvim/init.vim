@@ -161,9 +161,6 @@ nmap <C-j>                          <C-w>j
 nmap <C-l>                          <C-w>l
 nmap <C-h>                          <C-w>h
 
-nmap <leader>j                      :m+1<cr>
-nmap <leader>k                      :m-2<cr>
-
 nmap <tab>                          :bnext<cr>
 nmap <S-tab>                        :bprevious<cr>
 
