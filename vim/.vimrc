@@ -68,7 +68,7 @@ nmap <C-n>                          :NERDTreeToggle<cr>
 nmap <leader>f                      <Plug>(easymotion-sn)
 
 nmap <leader><space>                :noh<cr>
-nmap <leader>ev                     :e ~/.config/nvim/init.vim<cr>
+nmap <leader>ev                     :e ~/.vimrc<cr>
 nmap <leader>dd                     :bd<cr>
 nmap <leader>D                      :bd!<cr>
 

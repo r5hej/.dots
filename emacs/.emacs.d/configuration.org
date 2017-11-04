@@ -195,7 +195,17 @@
   #+END_SRC
 * Omnisharp
   #+BEGIN_SRC emacs-lisp
-    (add-hook 'csharp-mode-hook 'omnisharp-mode) 
+    (defun my-csharp-mode-setup ()
+      (setq indent-tabs-mode nil)
+      (setq c-syntactic-indentation t)
+      (c-set-style "ellemtel")
+      (setq c-basic-offset 4)
+      (setq truncate-lines t)
+      (setq tab-width 4)
+      (setq evil-shift-width 4)
+      (local-set-key (kbd "C-c C-c") 'recompile))
+
+    (add-hook 'csharp-mode-hook 'my-csharp-mode-setup t)
   #+END_SRC
 * Web-mode
   #+BEGIN_SRC elisp
