@@ -1,4 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+if [[ $(command -v stow) == "" ]]; then
+        read -srn 1 -p "Do you want to install stow? (Y/n) "
+        if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
+                sudo apt-get update && sudo apt-get install -y stow
+        fi
+fi
 
 function emacsInstall {
         stow emacs
