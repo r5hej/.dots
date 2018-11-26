@@ -2,7 +2,7 @@
 ### load custom extensions from github if not exists
 
 if [ ! -d ~/.dots ]; then
-    if [ "${which git}" == "" ]; then
+    if [ "$(which git)" == "" ]; then
         sudo apt update -qq
         sudo apt install -y git
     fi
