@@ -1,0 +1,17 @@
+
+### load custom extensions from github if not exists
+
+if [ ! -d ~/.dots ]; then
+    if [ "${which git}" == "" ]; then
+        sudo apt update -qq
+        sudo apt install -y git
+    fi
+
+    cd ~
+    git clone git@github.com:r5hej/.dots.git
+    ln -s ~/.dots/.bash_custom ~
+fi
+
+if [ -f ~/.bash_custom ]; then
+    . ~/.bash_custom
+fi
