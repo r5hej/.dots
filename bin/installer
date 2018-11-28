@@ -33,7 +33,8 @@ function install() {
     case "$1" in
         "vim")
             sudo apt-get install -y vim
-            wget -P $USER https://raw.githubusercontent.com/Joklost/.vimrc/master/.vimrc
+	    cd
+            wget https://raw.githubusercontent.com/Joklost/.vimrc/master/.vimrc
             ;;
         "c++")
             sudo apt-get install -y gcc g++ make clang clang-tidy lcov cmake gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64 wine64 cppcheck devhelp cppreference-doc-en-html cppman

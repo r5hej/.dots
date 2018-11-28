@@ -8,5 +8,6 @@ bind 'set completion-ignore-case on'
 ### aliases ###
 alias edit-bash-conf='vim ~/.bash_custom && source ~/.bashrc'
 alias edit-ssh='vim ~/.ssh/config'
+alias edit-bin='vim ~/.dots/bin'
 alias ..='cd ..'
 alias ....='cd .. && cd ..'
