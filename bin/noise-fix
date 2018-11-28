@@ -1,2 +1,2 @@
-#!/bin/sh
+#!/usr/bin/env bash
 amixer -c 0 cset numid=10 1

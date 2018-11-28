@@ -1,4 +1,0 @@
-file=$1
-
-ghc -dynamic $file
-./${file%%.*}

@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+
+PROGRAMS_ARR=("vim" "c++" "tmux" "emacs" "python3" "bspwm" "konsole")
+
+function print_menu() {
+    local out="\n"
+    local count=1
+    local column_count=1
+
+    out+="0) install all\n"
+
+    for element in "${PROGRAMS_ARR[@]}"; do
+        out+="$count) $element\n"
+        let count=$count+1
+        let column_count=$column_count+1
+
+        #if [ $column_count == 4 ]; then
+        #    out+=";\n"
+        #    column_count=0
+        #fi
+    done
+
+    out+="\n"
+
+    printf "$out"
+
+    #echo ""
+    #echo -ne $out
+    #echo ""
+}
+
+function install() {
+    case "$1" in
+        "vim")
+            sudo apt-get install -y vim
+            wget -P $USER https://raw.githubusercontent.com/Joklost/.vimrc/master/.vimrc
+            ;;
+        "c++")
+            sudo apt-get install -y gcc g++ make clang clang-tidy lcov cmake gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64 wine64 cppcheck devhelp cppreference-doc-en-html cppman
+            ;;
+        "python3")
+            sudo apt-get install -y python3 pip3 python3-virtualenv
+            ;;
+        "tmux")
+            sudo apt-get install -y tmux
+            ;;
+        "emacs")
+            stow emacs
+            curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
+            ;;
+        "bspwm")
+            sudo apt-get install -y xorg bspwm sxhkd xorg-xinit lxappearance gnome-themes-standard feh xorg-xbacklight i3lock xf86-video-intel network-manager-applet
+
+            stow bspwm
+            stow sxhkd
+
+            ln -s $HOME/.dotfiles/.xinitrc $HOME/
+            ln -s $HOME/.dotfiles/.Xresources $HOME/
+            ln -s $HOME/.dotfiles/flake8 $HOME/.config/
+            ;;
+        "konsole")
+            sudo apt-get install -y konsole
+            ;;
+        *)
+            echo "invalid input"
+            ;;
+    esac
+}
+
+print_menu
+read -a answer -p "Choose what to install: "
+
+if [ ! "${#answer[@]}" -gt "0" ]; then
+    exit 1
+fi
+
+if [ ${answer[0]} == 0 ]; then
+    echo "u chose all"
+    for i in "${PROGRAMS_ARR[@]}"; do
+        install $i
+    done
+else
+    for i in "${answer[@]}"; do
+        let index=$i-1
+        install ${PROGRAMS_ARR[$index]}
+    done
+fi
