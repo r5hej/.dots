@@ -1,38 +1,29 @@
 #!/usr/bin/env bash
 
-PROGRAMS_ARR=("vim" "c++" "tmux" "emacs" "python3" "bspwm" "konsole")
+PROGRAMS_ARR=("vim" "c++" "python3" "emacs" "bspwm")
 
 function print_menu() {
     local out="\n"
     local count=1
-    local column_count=1
 
     out+="0) install all\n"
 
     for element in "${PROGRAMS_ARR[@]}"; do
         out+="$count) $element\n"
         let count=$count+1
-        let column_count=$column_count+1
-
-        #if [ $column_count == 4 ]; then
-        #    out+=";\n"
-        #    column_count=0
-        #fi
     done
 
     out+="\n"
 
     printf "$out"
-
-    #echo ""
-    #echo -ne $out
-    #echo ""
 }
 
 function install() {
     case "$1" in
         "vim")
-            sudo apt-get install -y vim
+            if [ "$(which vim)" == "" ]; then
+                sudo apt-get install -y vim
+            fi
 	    cd
             wget https://raw.githubusercontent.com/Joklost/.vimrc/master/.vimrc
             ;;
@@ -40,10 +31,8 @@ function install() {
             sudo apt-get install -y gcc g++ make clang clang-tidy lcov cmake gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64 wine64 cppcheck devhelp cppreference-doc-en-html cppman
             ;;
         "python3")
-            sudo apt-get install -y python3 pip3 python3-virtualenv
-            ;;
-        "tmux")
-            sudo apt-get install -y tmux
+            sudo apt-get install -y python3 pip3
+            pip3 install --user pipenv
             ;;
         "emacs")
             stow emacs
@@ -58,9 +47,6 @@ function install() {
             ln -s $HOME/.dotfiles/.xinitrc $HOME/
             ln -s $HOME/.dotfiles/.Xresources $HOME/
             ln -s $HOME/.dotfiles/flake8 $HOME/.config/
-            ;;
-        "konsole")
-            sudo apt-get install -y konsole
             ;;
         *)
             echo "invalid input"
