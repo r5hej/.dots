@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo apt update -y -qq
+sudo apt update -qq -y
 sudo apt upgrade -y
 sudo apt dist-upgrade -y
 sudo apt clean
