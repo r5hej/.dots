@@ -6,3 +6,4 @@ sudo apt dist-upgrade -y
 sudo apt clean
 sudo apt autoclean
 sudo apt autoremove -y
+sudo snap refresh
