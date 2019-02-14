@@ -2,8 +2,8 @@
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
-export PATH="/home/r5hej/.local/bin:$PATH"
-export PATH="/home/r5hej/.dots/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.dots/bin:$PATH"
 
 bind 'set completion-ignore-case on'
 
@@ -11,5 +11,6 @@ bind 'set completion-ignore-case on'
 alias edit-bash-conf='vim $HOME/.bash_custom && source $HOME/.bashrc'
 alias edit-ssh='vim ~/.ssh/config'
 alias edit-bin='f() { org=$(pwd); cd $HOME/.dots/bin; vim .; source $HOME/.bashrc; cd $org; }; f'
+alias dots='cd $HOME/.dots'
 alias ..='cd ..'
 alias ....='cd .. && cd ..'
