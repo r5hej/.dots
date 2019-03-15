@@ -10,7 +10,7 @@ bind 'set completion-ignore-case on'
 ### aliases ###
 alias edit-bash-conf='vim $HOME/.bash_custom && source $HOME/.bashrc'
 alias edit-ssh='vim ~/.ssh/config'
-alias edit-bin='f() { org=$(pwd); cd $HOME/.dots/bin; vim .; source $HOME/.bashrc; cd $org; }; f'
+alias edit-bin='f() { org=$(pwd); cd $HOME/.dots/bin; vim .; chmod +x *; source $HOME/.bashrc; cd $org; }; f'
 alias dots='cd $HOME/.dots'
 alias ..='cd ..'
 alias ....='cd .. && cd ..'
