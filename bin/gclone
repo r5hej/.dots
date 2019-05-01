@@ -1,2 +1,17 @@
 #!/usr/bin/env bash
-git clone git@github.com:$1.git
+
+
+if [ $# -gt 1 ]; then
+    echo "Too many arguments"
+    exit 0
+elif [ $# -lt 1 ]; then
+    echo "No arguments provided"
+    exit 0
+fi
+
+if [ "$1" == "-h" ] || [ "$1" == "--help" ] || [ "$1" == "help" ]; then
+    printf "Clone a github repository in current folder\n\n"
+    printf "${CUSTOM_SCRIPTS_HELPER_INDENTATION}arg: owner/repository\n"
+else
+    git clone git@github.com:$1.git
+fi

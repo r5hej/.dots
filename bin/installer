@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-PROGRAMS_ARR=("vim" "c++" "python3" "emacs" "bspwm")
+PROGRAMS_ARR=("vim" "c++" "python3" "emacs" "bspwm" "jetbrains")
+JETBRAINS_IDE=(".WebStorm" ".CLion" ".PyCharm .IntelliJ")
 
 function print_menu() {
     local out="\n"
@@ -17,6 +18,15 @@ function print_menu() {
 
     printf "$out"
 }
+
+function jb_ln() {
+    local path="$(find $HOME -maxdepth 1 -iname $1* | awk -F '[/]' '{printf $4}')"
+    if [ path != "" ]; then
+        ln -s $HOME/.dots/jetbrains/templates $HOME/$path/config
+    fi
+
+}
+
 
 function install() {
     case "$1" in
@@ -47,6 +57,13 @@ function install() {
             ln -s $HOME/.dotfiles/.xinitrc $HOME/
             ln -s $HOME/.dotfiles/.Xresources $HOME/
             ln -s $HOME/.dotfiles/flake8 $HOME/.config/
+            ;;
+        "jetbrains")
+            for ide in ${JETBRAINS_IDE[@]}; do
+                jb_ln $ide
+            done
+
+
             ;;
         *)
             echo "invalid input"

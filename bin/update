@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
-sudo apt update -qq -y
-sudo apt upgrade -y
-sudo apt dist-upgrade -y
-sudo apt clean
-sudo apt autoclean
-sudo apt autoremove -y
-sudo snap refresh
+if [ "$1" == "-h" ] || [ "$1" == "--help" ] || [ "$1" == "help" ]; then
+    printf "Update using apt and snap\n"
+else
+    sudo apt update -qq -y
+    sudo apt upgrade -y
+    sudo apt dist-upgrade -y
+    sudo apt clean
+    sudo apt autoclean
+    sudo apt autoremove -y
+    sudo snap refresh
+fi

@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
-amixer -c 0 cset numid=10 1
+
+if [ "$1" == "-h" ] || [ "$1" == "--help" ] || [ "$1" == "help" ]; then
+    printf "Remove background noise in AUX output on xps laptop\n"
+else
+    amixer -c 0 cset numid=10 1
+fi
