@@ -7,8 +7,6 @@ export PATH="$HOME/.dots/bin:$PATH"
 export CUSTOM_SCRIPTS_HELPER_INDENTATION="   "
 
 bind 'set completion-ignore-case on'
-bind '\t:menu-complete'
-bind '\e[Z": menu-complete-backward'
 
 ### aliases ###
 alias edit-bash-conf='vim $HOME/.bash_custom && source $HOME/.bashrc'

@@ -5,7 +5,7 @@ if [ $# -gt 1 ]; then
     echo "Too many arguments"
     exit 0
 elif [ $# -lt 1 ]; then
-    echo "No arguments provided"
+    echo "No argument provided"
     exit 0
 fi
 

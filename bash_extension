@@ -15,3 +15,7 @@ fi
 if [ -f ~/.bash_custom ]; then
     . ~/.bash_custom
 fi
+
+if [ -f ~/.inputrc]; then
+    ln -s ~/.dots/.inputrc ~
+fi
