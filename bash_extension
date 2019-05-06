@@ -11,11 +11,3 @@ if [ ! -d ~/.dots ]; then
     git clone git@github.com:r5hej/.dots.git
     ln -s ~/.dots/.bash_custom ~
 fi
-
-if [ -f ~/.bash_custom ]; then
-    . ~/.bash_custom
-fi
-
-if [ -f ~/.inputrc]; then
-    ln -s ~/.dots/.inputrc ~
-fi

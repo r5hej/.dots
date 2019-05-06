@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [ -f $HOME/.inputrc]; then
+    ln -s $HOME/.dots/.inputrc $HOME
+fi
+
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export PATH="$HOME/.local/bin:$PATH"
