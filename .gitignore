@@ -17,3 +17,7 @@ nvim/.config/nvim/*
 # Vim
 vim/.vim/*
 !vim/.vim/colors
+
+# Ranger
+ranger/*
+!ranger/rc.conf

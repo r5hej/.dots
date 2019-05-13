@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROGRAMS_ARR=("vim" "c++" "python3" "emacs" "bspwm" "jetbrains")
+PROGRAMS_ARR=("vim" "c++" "python3" "emacs" "bspwm" "jetbrains" "ranger")
 JETBRAINS_IDE=(".WebStorm" ".CLion" ".PyCharm .IntelliJ")
 
 function print_menu() {
@@ -25,6 +25,23 @@ function jb_ln() {
         ln -s $HOME/.dots/jetbrains/templates $HOME/$path/config
     fi
 
+}
+
+function install_ranger() {
+    sudo apt install -y ranger
+    if [ ! -d $HOME/.config/ranger/ ]; then
+        printf "config directory not found\nCreating link to config directory\n"
+        ln -s $HOME/.dots/ranger $HOME/.config/
+    else
+        printf "config directory exists\n"
+        read -s -n 1 -a ranger_answer -p "replace with config from dots? [Y/n]: "
+        echo
+
+        if [[ "$ranger_answer" =~ ([yY]|^$) ]]; then
+            rm -r $HOME/.config/ranger/
+            ln -s $HOME/.dots/ranger $HOME/.config/
+        fi
+    fi
 }
 
 
@@ -62,8 +79,10 @@ function install() {
             for ide in ${JETBRAINS_IDE[@]}; do
                 jb_ln $ide
             done
-
-
+            ;;
+        "ranger")
+            echo ""
+            install_ranger
             ;;
         *)
             echo "invalid input"
