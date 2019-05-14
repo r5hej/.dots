@@ -10,13 +10,12 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.dots/bin:$PATH"
 export CUSTOM_SCRIPTS_HELPER_INDENTATION="   "
 
-bind 'set completion-ignore-case on'
 
 ### aliases ###
 alias edit-bash-conf='vim $HOME/.bash_custom && source $HOME/.bashrc'
 alias edit-alias='vim $HOME/.bash_aliases && source $HOME/.bashrc'
-alias edit-ssh='vim $HOME/.ssh/config'
-alias edit-bin='f() { org=$(pwd); cd $HOME/.dots/bin; vim .; chmod +x *; source $HOME/.bashrc; cd $org; }; f'
+alias edit-ssh='ranger $HOME/.ssh/'
+alias edit-bin='ranger $HOME/.dots/bin/'
 alias dots='cd $HOME/.dots'
 alias ..='cd ..'
 alias ....='cd .. && cd ..'
