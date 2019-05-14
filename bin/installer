@@ -29,7 +29,7 @@ function jb_ln() {
 
 function install_ranger() {
     sudo apt install -y ranger
-    if [ ! -d $HOME/.config/ranger/ ]; then
+    if [ ! -e $HOME/.config/ranger/ ]; then
         printf "config directory not found\nCreating link to config directory\n"
         ln -s $HOME/.dots/ranger $HOME/.config/
     else
@@ -38,7 +38,7 @@ function install_ranger() {
         echo
 
         if [[ "$ranger_answer" =~ ([yY]|^$) ]]; then
-            rm -r $HOME/.config/ranger/
+            rm -r $HOME/.config/ranger
             ln -s $HOME/.dots/ranger $HOME/.config/
         fi
     fi
