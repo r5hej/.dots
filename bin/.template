@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# load .env variables
+set -o allexport
+source .env
+set +o allexport
+
+
+if [ "$1" == "-h" ] || [ "$1" == "--help" ] || [ "$1" == "help" ]; then
+    printf "help msg \n\n"
+fi

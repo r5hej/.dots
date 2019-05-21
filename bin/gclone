@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# load .env variables
+set -o allexport
+source .env
+set +o allexport
+
 
 if [ $# -gt 1 ]; then
     echo "Too many arguments"
