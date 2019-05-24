@@ -18,3 +18,8 @@ alias edit-bin='ranger $HOME/.dots/bin/'
 alias dots='cd $HOME/.dots'
 alias ..='cd ..'
 alias ....='cd .. && cd ..'
+
+
+if [ -n "$RANGER_LEVEL" ]; then
+    export PS1="\e[92m\e[1m<ranger>\e[0m$PS1"
+fi

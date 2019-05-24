@@ -21,4 +21,4 @@ vim/.vim/*
 # Ranger
 ranger/*
 !ranger/rc.conf
-!ranger/comands.py
+!ranger/commands.py
