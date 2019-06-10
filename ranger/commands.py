@@ -31,3 +31,32 @@ class copy_path(Command):
 
     def execute(self):
         os.system('printf "{}" | xclip -sel clip'.format(self.fm.thisfile))
+
+
+class zip(Command):
+    """:zip <out_name>
+
+    Zip a directory with 0 compression
+    """
+
+    def execute(self):
+        zip_name = self.arg(1)
+        if '.zip' not in self.arg(1):
+            zip_name += '.zip'
+
+        os.system('zip -r -0 {} {} > /dev/null 2>&1'.format(zip_name, self.fm.thisfile))
+
+
+
+class unzip(Command):
+    """:unzip
+
+    Unzip a zip file
+    """
+
+    def execute(self):
+        if '.zip' not in self.fm.thisfile.realpath:
+            self.notify('Not a zip file')
+            return
+
+        os.system('unzip {} > /dev/null 2>&1'.format(self.fm.thisfile))
