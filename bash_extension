@@ -12,3 +12,8 @@ if [ ! -d $HOME/.dots ]; then
     git clone git@github.com:r5hej/.dots.git
     ln -s $HOME/.dots/.bash_custom $HOME
 fi
+
+
+if [ -f ~/.bash_custom ]; then
+    . ~/.bash_custom
+fi

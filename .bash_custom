@@ -4,6 +4,11 @@ if [ ! -f $HOME/.inputrc ]; then
     ln -s $HOME/.dots/.inputrc $HOME
 fi
 
+if [ -n "$RANGER_LEVEL" ]; then
+    export PS1="\e[92m\e[1m[ranger]\e[0m$PS1"
+fi
+
+
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export PATH="$HOME/.local/bin:$PATH"
@@ -20,7 +25,3 @@ alias dots='cd $HOME/.dots'
 alias ..='cd ..'
 alias ....='cd .. && cd ..'
 
-
-if [ -n "$RANGER_LEVEL" ]; then
-    export PS1="\e[92m\e[1m[ranger]\e[0m$PS1"
-fi
