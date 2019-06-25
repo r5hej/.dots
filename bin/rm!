@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# load .env variables
+set -o allexport
+source .env
+set +o allexport
+
+
+if [ "$1" = "-h" ] || [ "$1" = "--help" ] || [ "$1" = "help" ]; then
+    printf "inverted rm\n\n"
+    exit 0
+fi
+
+to_rm=()
+files=$(ls | tr '\n' ' ')
+args=()
+
+for i in $files; do
+    has=0
+    for j in $*; do
+        if [[ "$j" == "$i" ]]; then
+            has=1
+        fi
+    done
+    if [ $has -eq 0 ]; then
+        to_rm=("${to_rm[@]}" "$i")
+    fi
+done
+
+if [ ${#to_rm[@]} -gt 0 ]; then
+    rm "${to_rm[@]}"
+fi

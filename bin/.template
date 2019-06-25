@@ -8,4 +8,5 @@ set +o allexport
 
 if [ "$1" == "-h" ] || [ "$1" == "--help" ] || [ "$1" == "help" ]; then
     printf "help msg \n\n"
+    exit 0
 fi
