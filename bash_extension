@@ -1,13 +1,14 @@
 
 ### load custom extensions from github if not exists
 
-if [ ! -d ~/.dots ]; then
+if [ ! -d $HOME/.dots ]; then
     if [ "$(which git)" == "" ]; then
+        printf "git not found, installing with apt\n"
         sudo apt update -qq
-        sudo apt install -y git
+        sudo apt install -y -qq git
     fi
 
-    cd ~
+    cd $HOME
     git clone git@github.com:r5hej/.dots.git
-    ln -s ~/.dots/.bash_custom ~
+    ln -s $HOME/.dots/.bash_custom $HOME
 fi
