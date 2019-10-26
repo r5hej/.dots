@@ -51,6 +51,9 @@ function install() {
             if [ "$(which vim)" == "" ]; then
                 sudo apt-get install -y vim
             fi
+	    if [ "$(which ctags)" == "" ]; then
+	    	sudo apt-get install -y ctags
+	    fi
 	    cd
             wget https://raw.githubusercontent.com/Joklost/.vimrc/master/.vimrc
             ;;
