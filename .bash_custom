@@ -4,6 +4,10 @@ if [ ! -f $HOME/.inputrc ]; then
     ln -s $HOME/.dots/.inputrc $HOME
 fi
 
+if [ ! -f $HOME/.vimrc ]; then
+    ln -s $HOME/.dots/.vimrc $HOME
+fi
+
 if [ -n "$RANGER_LEVEL" ]; then
     export PS1="\e[92m\e[1m[ranger]\e[0m$PS1"
 fi
@@ -18,9 +22,9 @@ export PATH="$HOME/.dots/bin:$PATH"
 ### aliases ###
 alias edit-bash-conf='vim $HOME/.bash_custom && source $HOME/.bashrc'
 alias edit-alias='vim $HOME/.bash_aliases && source $HOME/.bashrc'
-alias edit-ssh='ranger $HOME/.ssh/'
-alias edit-dots-bin='ranger $HOME/.dots/bin/'
-alias edit-local-scripts='ranger $HOME/.local'
+alias edit-ssh='vim $HOME/.ssh/'
+alias edit-dots-bin='vim $HOME/.dots/bin/'
+alias edit-local-scripts='vim $HOME/.local'
 alias dots='cd $HOME/.dots'
 alias ..='cd ..'
 alias ....='cd .. && cd ..'

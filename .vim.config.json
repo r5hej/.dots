@@ -1,9 +1,0 @@
-{
-    "cmds": [
-        "map <tab> :bnext<CR>",
-        "map <s-tab> :bprev<CR>",
-        "map <leader>ev :e ~/.dots/.vim.config.json<CR>",
-        "vmap <leader>y \"+y",
-        "map <leader>p \"+p"
-    ]
-}
