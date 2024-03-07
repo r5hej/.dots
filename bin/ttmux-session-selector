@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# load .env variables
+set -o allexport
+source .env
+set +o allexport
+
+
+if [ "$1" == "-h" ] || [ "$1" == "--help" ] || [ "$1" == "help" ]; then
+    printf "help msg \n\n"
+    exit 0
+fi
+
+
+SESSION=$(tmux list-sessions -F \#S | gum filter --placeholder "Pick session...")
+tmux switch-client -t $SESSION || tmux attach -t $SESSION
